@@ -3,11 +3,17 @@ import 'dart:convert';
 import 'base_http_api.dart';
 
 class IdentityVerificationAPI extends BaseHTTPAPI {
-  IdentityVerificationAPI() : super("nida");
+  IdentityVerificationAPI() : super();
 
   Future<Map<String, dynamic>> startSession(String nin) async {
-    final data = {"nin": nin};
-    final result = await post("rq-verify", body: jsonEncode(data));
+    final data = {
+      "nin": nin,
+       "phoneNumber": "255712345678",
+  "email": "customer@example.com",
+  "cardIssueDate": "2010-01-19",
+  "cardExpiryDate": "2024-06-20"
+    };
+    final result = await post("onboard", body: jsonEncode(data));
     return result;
   }
 
@@ -21,7 +27,7 @@ class IdentityVerificationAPI extends BaseHTTPAPI {
       "questionCode": questionCode,
       "answer": answer,
     };
-    final result = await post("rq-verify", body: jsonEncode(data));
+    final result = await post("onboard", body: jsonEncode(data));
     return result;
   }
 }

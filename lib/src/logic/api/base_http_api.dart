@@ -3,10 +3,12 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart' show debugPrint;
+import 'package:uuid/uuid.dart';
 
 const rootURL = "https://gateway.temboplus.com";
 
-var _token = "";
+var _token =
+    "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmJvYXJkIiwicm9sZXMiOlsib25ib2FyZCJdLCJleHAiOjE3MDc0MDgyMTN9.BuGnAdoWyhYjyy-m3WGQzj-roUtDn-Tfx3U4ZWhifpVmAJmxbz2dU6YFkgi9XozflnUA-qHpZoY-48Qxnf5V7aHAyYEyW25W1leugwjkN9dlmfte4wKE9VKqXndtX1OEgmTZJDZhf3LDGpdgC9kKcW521W52w63-meR-ITC0dx8vlxXytL2VsFCqiByt2iTJU6gWHriIuVZm08eYVCf4igwkDC8xW9aduCNZ1yfQMS3cvdxCkClczZhgw1ZXR1HXwSnmjo1N1BRwJXC3lEPmbou5rF0QmBzVh_64gmiMg5svjwHaachGxA4W9yTBQlSbJMgzwa4uPFshJOAqBkR1SQ";
 
 typedef StatusCodeHandler = void Function(int statusCode);
 
@@ -17,6 +19,8 @@ abstract class BaseHTTPAPI {
   String get url => mainEndpoint == null ? rootURL : "$rootURL/$mainEndpoint";
 
   Uri getUri(String endpoint) {
+    print(url);
+    print(endpoint);
     if (endpoint.trim().isEmpty) return Uri.parse(url);
     return Uri.parse("$url/$endpoint");
   }
@@ -29,6 +33,9 @@ abstract class BaseHTTPAPI {
 
   Map<String, String> get headers {
     if (_token.isEmpty) return _headers;
+
+    final uuid = const Uuid().v1();
+    _headers.update("x-request-id", (_) => uuid, ifAbsent: () => uuid);
     return _headers..addAll({"x-authorization": _token});
   }
 
