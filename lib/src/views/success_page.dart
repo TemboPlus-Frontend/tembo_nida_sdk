@@ -20,14 +20,31 @@ class SuccessPage extends TemboPage {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TemboText.center(
-              "We have successfully verified your NIN Number",
-              style: context.textTheme.bodyLarge.withFW500,
+            Image.asset(
+              "packages/tembo_nida_sdk/assets/success.png",
+              height: 128,
             ),
             vSpace(),
-            const TemboText.center(
-              "Your Account Number should be available shortly.",
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: "Hi ",
+                    style: context.textTheme.bodyMedium,
+                  ),
+                  TextSpan(
+                    text: "${user.firstName} ${user.lastName}",
+                    style: context.textTheme.bodyMedium.bold,
+                  ),
+                  TextSpan(
+                    text: ", We have successfully verified your NIN Number",
+                    style: context.textTheme.bodyMedium,
+                  ),
+                ],
+              ),
             ),
+            vSpace(),
           ],
         ),
       ),
