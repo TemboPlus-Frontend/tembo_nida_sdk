@@ -8,7 +8,7 @@ import '../view_models/theme_manager.dart';
 
 final sdkRootNavKey = GlobalKey<NavigatorState>();
 
-void popBackToPrevApp<T>([T? result]) {
+void popBackToPrevApp<User>([User? result]) {
   sdkRootNavKey.popToFirstPage();
   prevAppNavManager.state.pop(result);
 }
