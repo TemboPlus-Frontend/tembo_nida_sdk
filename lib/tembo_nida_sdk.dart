@@ -8,9 +8,9 @@ import 'source.dart';
 import 'src/views/root_app.dart';
 import 'src/views/toc_page.dart';
 
-export 'package:tembo_core/tembo_core.dart';
+export "./src/logic/models/user.dart";
 
-NavigatorState get rootNavigator => prevAppNavManager.value;
+NavigatorState get prevAppRootNav => prevAppNavManager.value;
 
 Future<T?> startVerificationProcess<T>(
   BuildContext context, {

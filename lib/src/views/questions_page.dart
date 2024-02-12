@@ -8,9 +8,10 @@ import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
 
 import '../../source.dart';
+import '../logic/models/user.dart';
 import 'failure_page.dart';
 
-typedef _State = ({bool? successfullyVerified, Question? newQn});
+typedef _State = ({User? user, Question? newQn});
 
 final _pageStateNotifier = createModelStateNotifier<_State>();
 
@@ -151,8 +152,9 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
     final futureTracker = ref.read(futureTrackerProvider);
 
     Future<_State> future() async {
-      final result = await ref.read(verManagerProvider.notifier).getFirstQuestion();
-      return (successfullyVerified: null, newQn: result);
+      final result =
+          await ref.read(verManagerProvider.notifier).getFirstQuestion();
+      return (user: null, newQn: result);
     }
 
     futureTracker.trackWithNotifier(
@@ -175,7 +177,6 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
     final valid = validate();
     if (!valid) return;
 
-    callback = sendAnswer;
     final futureTracker = ref.read(futureTrackerProvider);
 
     futureTracker.trackWithNotifier(
@@ -187,14 +188,14 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
       onSuccess: (data) {
         answerController.clear();
 
-        if (data.successfullyVerified == null && data.newQn == null) {
+        if (data.user == null && data.newQn == null) {
           sdkRootNavKey.push(const FailurePage());
           return;
         }
 
-        if (data.successfullyVerified == true) {
+        if (data.user != null) {
           sdkRootNavKey.pop();
-          sdkRootNavKey.push(const SuccessPage());
+          sdkRootNavKey.push(SuccessPage(data.user!));
         }
       },
     );

@@ -1,8 +1,11 @@
+import 'package:tembo_nida_sdk/src/logic/models/user.dart';
+
 import '../../source.dart';
 import 'root_app.dart';
 
 class SuccessPage extends TemboPage {
-  const SuccessPage({super.key});
+  final User user;
+  const SuccessPage(this.user, {super.key});
 
   @override
   String get name => "success";
@@ -28,8 +31,8 @@ class SuccessPage extends TemboPage {
           ],
         ),
       ),
-      bottomNavigationBar: const TemboBottomButton(
-        callback: popBackToPrevApp,
+      bottomNavigationBar: TemboBottomButton(
+        callback: () => popBackToPrevApp(user),
         text: "Okay",
       ),
     );

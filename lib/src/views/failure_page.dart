@@ -1,3 +1,5 @@
+import 'package:tembo_nida_sdk/src/views/root_app.dart';
+
 import '../../source.dart';
 
 class FailurePage extends TemboPage {
@@ -25,7 +27,7 @@ class FailurePage extends TemboPage {
             vSpace(),
             TemboTextButton(
               onPressed: () {
-                rootNavKey.currentState!
+                sdkRootNavKey.currentState!
                     .popUntil((route) => route.settings.name == "nin");
               },
               style: TemboButtonStyle.outline(

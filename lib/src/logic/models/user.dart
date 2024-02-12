@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class Profile {
+class User {
   final String firstName;
   final String lastName;
 
@@ -8,7 +8,7 @@ class Profile {
     return "$firstName $lastName";
   }
 
-  const Profile({
+  const User({
     required this.firstName,
     required this.lastName,
   });
@@ -20,8 +20,8 @@ class Profile {
     };
   }
 
-  factory Profile.fromMap(Map<String, dynamic> map) {
-    return Profile(
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
     );
@@ -29,14 +29,14 @@ class Profile {
 
   String toJson() => json.encode(toMap());
 
-  factory Profile.fromJson(String source) =>
-      Profile.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) =>
+      User.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Profile(firstName: $firstName, lastName: $lastName)';
 
   @override
-  bool operator ==(covariant Profile other) {
+  bool operator ==(covariant User other) {
     if (identical(this, other)) return true;
 
     return other.firstName == firstName && other.lastName == lastName;
