@@ -5,19 +5,16 @@ import 'question.dart';
 class Result {
   final Question question;
   final String answer;
-  final bool right;
 
   const Result({
     required this.question,
     required this.answer,
-    required this.right,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'question': question.toMap(),
       'answer': answer,
-      'right': right,
     };
   }
 
@@ -25,7 +22,6 @@ class Result {
     return Result(
       question: Question.fromMap(map['question'] as Map<String, dynamic>),
       answer: map['answer'] as String,
-      right: map['right'] as bool,
     );
   }
 
@@ -35,18 +31,15 @@ class Result {
       Result.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() =>
-      'Result(question: $question, answer: $answer, right: $right)';
+  String toString() => 'Result(question: $question, answer: $answer)';
 
   @override
   bool operator ==(covariant Result other) {
     if (identical(this, other)) return true;
 
-    return other.question == question &&
-        other.answer == answer &&
-        other.right == right;
+    return other.question == question && other.answer == answer;
   }
 
   @override
-  int get hashCode => question.hashCode ^ answer.hashCode ^ right.hashCode;
+  int get hashCode => question.hashCode ^ answer.hashCode;
 }

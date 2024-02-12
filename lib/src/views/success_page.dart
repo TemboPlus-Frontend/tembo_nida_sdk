@@ -1,9 +1,8 @@
-import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
-import 'package:tembo_ui/source.dart';
+import '../../source.dart';
+import 'root_app.dart';
 
 class SuccessPage extends TemboPage {
-  final Profile profile;
-  const SuccessPage(this.profile, {super.key});
+  const SuccessPage({super.key});
 
   @override
   String get name => "success";
@@ -14,11 +13,17 @@ class SuccessPage extends TemboPage {
       appBar: TemboAppBar(label: ""),
       body: Container(
         constraints: kMaxConstraints,
+        padding: kHorPadding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TemboText(
-              "${profile.name}, We have successfully verified your NIN Number",
+            TemboText.center(
+              "We have successfully verified your NIN Number",
+              style: context.textTheme.bodyLarge.withFW500,
+            ),
+            vSpace(),
+            const TemboText.center(
+              "Your Account Number should be available shortly.",
             ),
           ],
         ),

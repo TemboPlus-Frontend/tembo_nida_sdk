@@ -1,29 +1,30 @@
 library tembo_nida_sdk;
 
-import 'package:tembo_ui/source.dart';
-import 'package:tembo_ui/tembo_ui.dart';
+import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
+import 'package:tembo_nida_sdk/src/view_models/navigator_manager.dart';
+import 'package:tembo_nida_sdk/src/view_models/theme_manager.dart';
 
-import 'src/views/prep_page.dart';
+import 'source.dart';
+import 'src/views/root_app.dart';
+import 'src/views/toc_page.dart';
 
-export 'package:tembo_ui/source.dart';
-export 'package:tembo_ui/tembo_ui.dart';
+export 'package:tembo_core/tembo_core.dart';
 
-// NavigatorState get rootNavigator => navigatorManager.value;
-NavigatorState get rootNavigator => rootNavKey.currentState!;
+NavigatorState get rootNavigator => prevAppNavManager.value;
 
 Future<T?> startVerificationProcess<T>(
   BuildContext context, {
-  /// Color scheme to be used for all components used in the SDK.
   /// Sets the language to be used.
   ///
   /// Only Swahili(sw) and English(en) are currently supported
   TemboLocale locale = TemboLocale.en,
 
-  /// If themeMode is null, PlatformBrightness will be checked by using MediaQuery.platformBrightnessOf(context)
-  TemboThemeMode? themeMode = TemboThemeMode.light,
+  /// Sets the themeMode for all pages in the SDK
+  ThemeMode themeMode = ThemeMode.system,
 }) async {
-  initializeUISDK(context, locale: locale, themeMode: themeMode);
+  initNavigatorManager(context);
+  initLocaleManager(context, locale);
+  initThemeManager(context, themeMode);
 
-  void onAgreed() => rootNavigator.to2(const PrepPage());
-  return await pushApp(context, "toc", TOCPage(onAgreed));
+  return await pushApp(context, "toc", const TOCPage());
 }

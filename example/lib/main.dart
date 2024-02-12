@@ -1,3 +1,4 @@
+import 'package:tembo_nida_sdk/source.dart';
 import 'package:tembo_nida_sdk/tembo_nida_sdk.dart';
 
 void main() {
@@ -14,7 +15,10 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    return MaterialApp(
+      home: const HomePage(),
+      theme: ThemeData(fontFamily: "TTHoves"),
+    );
   }
 }
 

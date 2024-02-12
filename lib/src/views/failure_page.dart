@@ -1,4 +1,4 @@
-import 'package:tembo_ui/source.dart';
+import '../../source.dart';
 
 class FailurePage extends TemboPage {
   const FailurePage({super.key});

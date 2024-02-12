@@ -49,6 +49,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cupertino_icons:
+    dependency: transitive
+    description:
+      name: cupertino_icons
+      sha256: d57953e10f9f8327ce64a508a355f0b1ec902193f66288e8cb5070e7c47eeb2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   fake_async:
     dependency: transitive
     description:
@@ -125,6 +133,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  hive:
+    dependency: transitive
+    description:
+      name: hive
+      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   http:
     dependency: transitive
     description:
@@ -165,6 +181,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  linked_scroll_controller:
+    dependency: transitive
+    description:
+      name: linked_scroll_controller
+      sha256: e6020062bcf4ffc907ee7fd090fa971e65d8dfaac3c62baf601a3ced0b37986a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   lints:
     dependency: transitive
     description:
@@ -282,21 +306,19 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  tembo_core:
+    dependency: transitive
+    description:
+      path: "/Users/mac/Downloads/programs/temboplus/tembo_core/"
+      relative: false
+    source: path
+    version: "0.0.1"
   tembo_nida_sdk:
     dependency: "direct main"
     description:
       path: "/Users/mac/Downloads/Programs/temboplus/tembo_nida_sdk/"
       relative: false
     source: path
-    version: "0.0.1"
-  tembo_ui:
-    dependency: transitive
-    description:
-      path: "."
-      ref: master
-      resolved-ref: "8426ab2be30c34d0cc4999d8355fece842c4cee6"
-      url: "https://github.com/okellogerald/tembo_ui.git"
-    source: git
     version: "0.0.1"
   term_glyph:
     dependency: transitive
@@ -326,10 +348,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher
-      sha256: b1c9e98774adf8820c96fbc7ae3601231d324a7d5ebd8babe27b6dfac91357ba
+      sha256: c512655380d241a337521703af62d2c122bf7b77a46ff7dd750092aa9433499c
       url: "https://pub.dev"
     source: hosted
-    version: "6.2.1"
+    version: "6.2.4"
   url_launcher_android:
     dependency: transitive
     description:

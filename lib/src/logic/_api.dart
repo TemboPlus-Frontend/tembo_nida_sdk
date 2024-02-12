@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart' show debugPrint;
 import 'package:uuid/uuid.dart';
 
-const rootURL = "https://gateway.temboplus.com";
+const rootURL = "https://gateway.temboplus.com/onboard";
 
 var _token =
-    "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmJvYXJkIiwicm9sZXMiOlsib25ib2FyZCJdLCJleHAiOjE3MDc0MDgyMTN9.BuGnAdoWyhYjyy-m3WGQzj-roUtDn-Tfx3U4ZWhifpVmAJmxbz2dU6YFkgi9XozflnUA-qHpZoY-48Qxnf5V7aHAyYEyW25W1leugwjkN9dlmfte4wKE9VKqXndtX1OEgmTZJDZhf3LDGpdgC9kKcW521W52w63-meR-ITC0dx8vlxXytL2VsFCqiByt2iTJU6gWHriIuVZm08eYVCf4igwkDC8xW9aduCNZ1yfQMS3cvdxCkClczZhgw1ZXR1HXwSnmjo1N1BRwJXC3lEPmbou5rF0QmBzVh_64gmiMg5svjwHaachGxA4W9yTBQlSbJMgzwa4uPFshJOAqBkR1SQ";
+    "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmJvYXJkIiwicm9sZXMiOlsib25ib2FyZCJdLCJleHAiOjE3MDgxNjYzMzZ9.Pshh3IJ2wkfnvAHX85uh3C1HD60k0WRE3EZy6szbN4nlRhU2toNdtaAE_Qsi2ZjIodo3NzibP7c7LfmLYaq2n6zJW7_Y1qdewpkdI7ui41RPCWlAsa1oCi_EU_bl45BKFqPfBdKHA7lko_Ujo93XnQxd-hkz9plzRIPH4fHKNFCiyCoiJnTCPu652IbPd7Xh-r-LvRF12vsxa5lS6wY-N3t8xYrknrwDFjLDsoIpj-QekP6ApjdyknKBshj_16DQybAAfrPMQBA6GpE6YbKOGftj0M1CjcQjHN1ZOWyWnb9tIrN3xaYVGeT0kawIWOtDw-NZ2jkqWrppnPNfw4UTTQ";
 
 typedef StatusCodeHandler = void Function(int statusCode);
 
@@ -19,8 +19,6 @@ abstract class BaseHTTPAPI {
   String get url => mainEndpoint == null ? rootURL : "$rootURL/$mainEndpoint";
 
   Uri getUri(String endpoint) {
-    print(url);
-    print(endpoint);
     if (endpoint.trim().isEmpty) return Uri.parse(url);
     return Uri.parse("$url/$endpoint");
   }
@@ -35,8 +33,7 @@ abstract class BaseHTTPAPI {
     if (_token.isEmpty) return _headers;
 
     final uuid = const Uuid().v1();
-    _headers.update("x-request-id", (_) => uuid, ifAbsent: () => uuid);
-    return _headers..addAll({"x-authorization": _token});
+    return _headers..addAll({"Authorization": "Bearer $_token", "x-request-id": uuid});
   }
 
   Future<T> get<T>(
@@ -62,6 +59,7 @@ abstract class BaseHTTPAPI {
     if (params?.trim().isNotEmpty ?? false) {
       url = url.updateQueryParameters(params!);
     }
+
     final response = await http.post(
       url,
       body: body,
@@ -105,7 +103,8 @@ extension ResponseExtension on http.Response {
     Request:
       url: ${request?.url}
       method: ${request?.method}
-      token: ${request?.headers['x-authorization']}
+      token: ${request?.headers['Authorization']}
+      request_id: ${request?.headers['x-request-id']}
       body: $requestBody
 
     Response:

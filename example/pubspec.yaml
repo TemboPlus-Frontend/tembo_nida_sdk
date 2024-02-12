@@ -21,15 +21,16 @@ flutter:
   uses-material-design: true
 
   fonts:
-    - family: TT-Hoves
+    - family: IBMPlexSans
       fonts:
-        - asset: packages/tembo_ui/fonts/TTHoves_Light.ttf
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Light.ttf
           weight: 300
-        - asset: packages/tembo_ui/fonts/TTHoves_Regular.ttf
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Regular.ttf
           weight: 400
-        - asset: packages/tembo_ui/fonts/TTHoves_Medium.ttf
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Medium.ttf
           weight: 500
-        - asset: packages/tembo_ui/fonts/TTHoves_Bold.ttf
+        - asset: packages/tembo_core/fonts/IBMPlexSans/SemiBold.ttf
           weight: 600
-        - asset: packages/tembo_ui/fonts/TTHoves_Black.ttf
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Bold.ttf
           weight: 700
+

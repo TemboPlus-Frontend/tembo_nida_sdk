@@ -2,21 +2,20 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
-import 'package:tembo_nida_sdk/src/logic/session_manager.dart';
+import 'package:tembo_nida_sdk/src/logic/session/manager.dart';
+import 'package:tembo_nida_sdk/src/logic/verify/manager.dart';
+import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
-import 'package:tembo_ui/app_state/source.dart';
-import 'package:tembo_ui/source.dart';
 
-import '../logic/models/profile.dart';
+import '../../source.dart';
 import 'failure_page.dart';
 
-typedef _State = ({Profile? profile, Question? newQn});
+typedef _State = ({bool? successfullyVerified, Question? newQn});
 
 final _pageStateNotifier = createModelStateNotifier<_State>();
 
 final class QuestionsPage extends TemboConsumerPage {
-  final String ninNumber;
-  const QuestionsPage(this.ninNumber, {super.key});
+  const QuestionsPage({super.key});
 
   @override
   String get name => "questions-page";
@@ -69,9 +68,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
         constraints: kMaxConstraints,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("packages/tembo_nida_sdk/assets/laoding.gif")
-          ],
+          children: [Image.asset("packages/tembo_nida_sdk/assets/laoding.gif")],
         ),
       ),
     );
@@ -94,15 +91,14 @@ class _QuestionsPageStateView extends ConsumerWidget {
               // const TemboFormLabel("Question (English)"),
               // buildQn(qn.inEnglish),
               // vSpace(),
-              TemboFormLabel(
+              TemboLabel(
                 "Swali: ",
                 style: context.textTheme.bodyLarge.bold.withPrimaryColor,
               ),
               buildQn(qn.inSwahili),
               vSpace(),
-              TemboLabelledFormField(
-                label: "Jibu:",
-                labelStyle: context.textTheme.bodyLarge.bold.withPrimaryColor,
+              TemboTextField.labelled(
+                "Jibu:",
                 controller: state.answerController,
                 textCapitalization: TextCapitalization.words,
               )
@@ -139,7 +135,8 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
-    ref.read(sessionManagerProvider.notifier).init(widget.ninNumber);
+    final session = ref.read(sessionManagerProvider);
+    ref.read(verManagerProvider.notifier).init(session);
     loadFirstQuestion();
   }
 
@@ -154,8 +151,8 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
     final futureTracker = ref.read(futureTrackerProvider);
 
     Future<_State> future() async {
-      final result = await ref.read(sessionManagerProvider.notifier).start();
-      return (profile: null, newQn: result);
+      final result = await ref.read(verManagerProvider.notifier).getFirstQuestion();
+      return (successfullyVerified: null, newQn: result);
     }
 
     futureTracker.trackWithNotifier(
@@ -167,7 +164,7 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
   bool validate() {
     if (answerController.compactText == null) {
-      showErrorSnackbar("Tafadhari andika jibu sahihi");
+      showSnackbar("Tafadhari andika jibu sahihi");
       return false;
     }
 
@@ -183,21 +180,21 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
     futureTracker.trackWithNotifier(
       notifier: ref.read(_pageStateNotifier.notifier),
-      future: ref.read(sessionManagerProvider.notifier).sendAnswer(
+      future: ref.read(verManagerProvider.notifier).sendAnswer(
             ref.read(_pageStateNotifier).data!.newQn!,
             answerController.compactText!,
           ),
       onSuccess: (data) {
         answerController.clear();
 
-        if (data.profile == null && data.newQn == null) {
-          rootNavKey.push(const FailurePage());
+        if (data.successfullyVerified == null && data.newQn == null) {
+          sdkRootNavKey.push(const FailurePage());
           return;
         }
 
-        if (data.profile != null) {
-          rootNavKey.pop();
-          rootNavKey.push(SuccessPage(data.profile!));
+        if (data.successfullyVerified == true) {
+          sdkRootNavKey.pop();
+          sdkRootNavKey.push(const SuccessPage());
         }
       },
     );

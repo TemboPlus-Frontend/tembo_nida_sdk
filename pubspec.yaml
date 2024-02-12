@@ -12,17 +12,19 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  tembo_core:
+    path: /Users/mac/Downloads/programs/temboplus/tembo_core/
   # tembo_ui:
-  #   path: /Users/macbookpro/Downloads/programs/packages/tembo_ui/
-  tembo_ui:
-    git: 
-      url: https://github.com/okellogerald/tembo_ui.git
-      ref: master
+  #   git: 
+  #     url: https://github.com/okellogerald/tembo_ui.git
+  #     ref: master
   http: ^1.0.0
   freezed_annotation: ^2.2.0
   flutter_riverpod: ^2.3.6
   mobile_scanner: ^3.5.0
   uuid: ^4.3.3
+  flex_color_scheme: ^7.3.1
+  url_launcher: ^6.2.4
  
 dev_dependencies:
   flutter_test:
@@ -36,3 +38,18 @@ flutter:
 
   assets:
     - assets/
+
+  fonts:
+    - family: IBMPlexSans
+      fonts:
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Light.ttf
+          weight: 300
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Regular.ttf
+          weight: 400
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Medium.ttf
+          weight: 500
+        - asset: packages/tembo_core/fonts/IBMPlexSans/SemiBold.ttf
+          weight: 600
+        - asset: packages/tembo_core/fonts/IBMPlexSans/Bold.ttf
+          weight: 700
+

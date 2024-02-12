@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tembo_ui/source.dart';
+import 'package:tembo_nida_sdk/src/views/root_app.dart';
+
+import '../../source.dart';
 
 class QRCodeScannerPage extends TemboConsumerPage {
   const QRCodeScannerPage({super.key});
@@ -38,7 +40,7 @@ class _QRCodeScannerPageState extends ConsumerState<QRCodeScannerPage> {
           final List<Barcode> barcodes = capture.barcodes;
           if (barcodes.isNotEmpty) {
             controller.stop();
-            pop(context, barcodes.first);
+            sdkRootNavKey.pop(barcodes.first);
           }
         },
       ),
