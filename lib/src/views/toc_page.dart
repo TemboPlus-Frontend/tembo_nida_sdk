@@ -21,7 +21,6 @@ class _TOCPageState extends State<TOCPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(DefaultTextStyle.of(sdkRootNavKey.currentContext!).style.fontFamily);
     return Scaffold(
       appBar: TemboAppBar(
         label: context.l.toc.title,
@@ -52,7 +51,6 @@ class _TOCPageState extends State<TOCPage> {
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w300,
-                          fontFamily: "TTHoves",
                         ),
                       ),
                       const SizedBox(height: 10),
