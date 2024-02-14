@@ -7,12 +7,13 @@ import 'package:tembo_nida_sdk/src/view_models/theme_manager.dart';
 import 'source.dart';
 import 'src/views/root_app.dart';
 import 'src/views/toc_page.dart';
+import 'tembo_nida_sdk.dart';
 
 export "./src/logic/models/user.dart";
 
 NavigatorState get prevAppRootNav => prevAppNavManager.value;
 
-Future<T?> startVerificationProcess<T>(
+Future<NIDAUser?> startNIDAVerProcess(
   BuildContext context, {
   /// Sets the language to be used.
   ///

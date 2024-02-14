@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/source.dart';
+import 'package:tembo_nida_sdk/src/logic/models/user.dart';
 
 import '../view_models/locale_manager.dart';
 import '../view_models/navigator_manager.dart';
@@ -8,7 +9,7 @@ import '../view_models/theme_manager.dart';
 
 final sdkRootNavKey = GlobalKey<NavigatorState>();
 
-void popBackToPrevApp<User>([User? result]) {
+void popBackToPrevApp([NIDAUser? result]) {
   sdkRootNavKey.popToFirstPage();
   prevAppNavManager.state.pop(result);
 }

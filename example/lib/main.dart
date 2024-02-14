@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () {
-              startVerificationProcess(context);
+              startNIDAVerProcess(context);
             },
             child: const Text("Start NIDA Verification"),
           ),
