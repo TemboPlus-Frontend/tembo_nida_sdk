@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-import '../../../source.dart';
-import '../_api.dart';
+import 'package:tembo_nida_sdk/source.dart';
 
 class SessionAPI extends BaseHTTPAPI {
   SessionAPI() : super("onboard");

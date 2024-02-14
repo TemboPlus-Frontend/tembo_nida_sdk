@@ -12,7 +12,7 @@ class IdentityRepository {
     return Question.fromMap(body["result"]);
   }
 
-  Future<(User? user, ({Result result, Question newQn})?)> sendAnswer(
+  Future<(NIDAUser? user, ({Result result, Question newQn})?)> sendAnswer(
     Question qn,
     String onboardId,
     String answer,
@@ -21,18 +21,18 @@ class IdentityRepository {
 
     String? code;
     Question? newQn;
-    User? user;
+    NIDAUser? user;
 
     try {
       code = body["code"];
     } catch (_) {}
-    
+
     try {
       newQn = Question.fromMap(body["result"]);
     } catch (_) {}
 
     try {
-      user = User.fromMap(body["result"]);
+      user = NIDAUser.fromMap(body["result"]);
     } catch (_) {}
 
     if (newQn != null) {

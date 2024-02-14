@@ -14,7 +14,6 @@ final verManagerProvider =
 class VerificationManager extends StateNotifier<List<Result>> {
   VerificationManager() : super(const []);
 
-
   final _repo = IdentityRepository();
 
   late Session _session;
@@ -25,7 +24,7 @@ class VerificationManager extends StateNotifier<List<Result>> {
     return qn;
   }
 
-  Future<({User? user, Question? newQn})> sendAnswer(
+  Future<({NIDAUser? user, Question? newQn})> sendAnswer(
     Question qn,
     String answer,
   ) async {

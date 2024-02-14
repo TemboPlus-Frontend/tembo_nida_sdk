@@ -70,9 +70,9 @@ class _TOCPageState extends State<TOCPage> {
                     Checkbox.adaptive(
                       value: agreedToTOC,
                       onChanged: updateAgreeStatus,
-                      checkColor: theme.colorScheme.onPrimary,
+                      checkColor: lightTheme.colorScheme.onPrimary,
                       fillColor: agreedToTOC
-                          ? MaterialStatePropertyAll(theme.colorScheme.primary)
+                          ? MaterialStatePropertyAll(lightTheme.colorScheme.primary)
                           : null,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),

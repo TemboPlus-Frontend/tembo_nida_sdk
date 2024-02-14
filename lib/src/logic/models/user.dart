@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class User {
+class NIDAUser {
   final String firstName;
   final String lastName;
 
@@ -8,7 +8,7 @@ class User {
     return "$firstName $lastName";
   }
 
-  const User({
+  const NIDAUser({
     required this.firstName,
     required this.lastName,
   });
@@ -20,8 +20,8 @@ class User {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory NIDAUser.fromMap(Map<String, dynamic> map) {
+    return NIDAUser(
       firstName: map['firstName'] as String,
       lastName: map['lastName'] as String,
     );
@@ -29,14 +29,14 @@ class User {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory NIDAUser.fromJson(String source) =>
+      NIDAUser.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() => 'Profile(firstName: $firstName, lastName: $lastName)';
 
   @override
-  bool operator ==(covariant User other) {
+  bool operator ==(covariant NIDAUser other) {
     if (identical(this, other)) return true;
 
     return other.firstName == firstName && other.lastName == lastName;

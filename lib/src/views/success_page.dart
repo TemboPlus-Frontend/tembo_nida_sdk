@@ -4,7 +4,7 @@ import '../../source.dart';
 import 'root_app.dart';
 
 class SuccessPage extends TemboPage {
-  final User user;
+  final NIDAUser user;
   const SuccessPage(this.user, {super.key});
 
   @override

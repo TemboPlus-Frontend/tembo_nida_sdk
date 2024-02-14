@@ -11,7 +11,7 @@ import '../../source.dart';
 import '../logic/models/user.dart';
 import 'failure_page.dart';
 
-typedef _State = ({User? user, Question? newQn});
+typedef _State = ({NIDAUser? user, Question? newQn});
 
 final _pageStateNotifier = createModelStateNotifier<_State>();
 

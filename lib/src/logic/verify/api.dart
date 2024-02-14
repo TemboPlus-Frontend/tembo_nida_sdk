@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../_api.dart';
+import 'package:tembo_core/tembo_core.dart';
 
 class IdentityVerificationAPI extends BaseHTTPAPI {
   IdentityVerificationAPI() : super("onboard/verify");
