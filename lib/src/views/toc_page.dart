@@ -23,7 +23,7 @@ class _TOCPageState extends State<TOCPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TemboAppBar(
-        label: context.l.toc.title,
+        label: context.loc.toc.title,
         onBackPress: prevAppNavManager.value.pop,
       ),
       extendBodyBehindAppBar: true,
@@ -46,7 +46,7 @@ class _TOCPageState extends State<TOCPage> {
                       const TemboText("TEMBO PLUS INC."),
                       const SizedBox(height: 10),
                       TemboText(
-                        context.l.toc.desc,
+                        context.loc.toc.desc,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 14,
@@ -57,7 +57,7 @@ class _TOCPageState extends State<TOCPage> {
                       TemboTextButton(
                         onPressed: showTOC,
                         style: const TemboButtonStyle.outline(),
-                        child: TemboText(context.l.toc.readTerms),
+                        child: TemboText(context.loc.toc.readTerms),
                       ),
                     ],
                   ),
@@ -80,7 +80,7 @@ class _TOCPageState extends State<TOCPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: TemboText(
-                        context.l.toc.readAlready,
+                        context.loc.toc.readAlready,
                         style: const TextStyle(fontSize: 12),
                       ),
                     )
@@ -120,7 +120,7 @@ class _Button extends StatelessWidget {
     return SafeArea(
       child: TemboTextButton(
         onPressed: () {},
-        child: TemboText(context.l.next),
+        child: TemboText(context.loc.next),
       ),
     );
   }

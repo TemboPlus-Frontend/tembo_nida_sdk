@@ -3,6 +3,7 @@ library tembo_nida_sdk;
 import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_nida_sdk/src/view_models/navigator_manager.dart';
 import 'package:tembo_nida_sdk/src/view_models/theme_manager.dart';
+import 'package:tembo_nida_sdk/src/view_models/token_manager.dart';
 
 import 'source.dart';
 import 'src/views/root_app.dart';
@@ -22,10 +23,14 @@ Future<NIDAUser?> startNIDAVerProcess(
 
   /// Sets the themeMode for all pages in the SDK
   ThemeMode themeMode = ThemeMode.system,
+
+  /// Required to make any calls to the the Tembo API
+  required String token,
 }) async {
   initNavigatorManager(context);
   initLocaleManager(context, locale);
   initThemeManager(context, themeMode);
+  initTokenManager(token);
 
   return await pushApp(context, "toc", const TOCPage());
 }

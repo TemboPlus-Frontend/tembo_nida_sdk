@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
-import 'package:tembo_nida_sdk/src/logic/session/manager.dart';
 import 'package:tembo_nida_sdk/src/logic/verify/manager.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
@@ -53,7 +52,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
               vSpace(),
               TemboTextButton(
                 onPressed: state.retry,
-                child: TemboText(context.l.tryAgain),
+                child: TemboText(context.loc.tryAgain),
               ),
             ],
           ),
@@ -136,8 +135,6 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
-    final session = ref.read(sessionManagerProvider);
-    ref.read(verManagerProvider.notifier).init(session);
     loadFirstQuestion();
   }
 
@@ -158,8 +155,8 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
     }
 
     futureTracker.trackWithNotifier(
-      notifier: ref.read(_pageStateNotifier.notifier),
       future: future(),
+      notifier: ref.read(_pageStateNotifier.notifier),
       onSuccess: (p0) => answerController.clear(),
     );
   }

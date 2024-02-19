@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tembo_nida_sdk/src/logic/models/session.dart';
-import 'package:tembo_nida_sdk/src/logic/session/manager.dart';
+import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
+import 'package:tembo_nida_sdk/src/logic/profile/manager.dart';
+import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
+import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_nida_sdk/src/views/questions_page.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 
@@ -9,7 +11,7 @@ import '../../source.dart';
 
 import 'qr_code_scanner.dart';
 
-final _pageStateNotifier = createModelStateNotifier<Session>();
+final _profileStateNotifier = createModelStateNotifier<Profile>();
 
 class BasicInfoPage extends TemboConsumerPage {
   const BasicInfoPage({super.key});
@@ -69,12 +71,12 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                     ],
                     validator: validateTZPhone,
                   ),
-                  TemboTextField.labelled(
+                  /*     TemboTextField.labelled(
                     "Email",
                     controller: state.emailContr,
                     textInputType: TextInputType.emailAddress,
                     validator: validateEmail,
-                  ),
+                  ), */
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -105,8 +107,8 @@ class _NIDANumberPageStateView extends ConsumerWidget {
       ),
       bottomNavigationBar: TemboBottomButton(
         callback: state.next,
-        text: context.l.next,
-        loading: ref.watch(_pageStateNotifier).isLoading,
+        text: context.loc.next,
+        loading: ref.watch(_profileStateNotifier).isLoading,
       ),
     );
   }
@@ -148,27 +150,44 @@ class _NIDANumberPageState extends ConsumerState<BasicInfoPage> {
   }
 
   bool validate() {
-    return formKey.currentState?.validate() ?? false;
+    final valid = formKey.currentState?.validate() ?? false;
+    if (valid) {
+      final phone = PhoneNumber.from(phoneContr.compactText ?? "");
+      if (phone == null) {
+        showSnackbar("Invalid phone number");
+        return false;
+      }
+    }
+
+    return valid;
   }
 
-  void next() {
-    final valid = validate();
-    if (!valid) return;
-
-    final data = SessionCreateData(
-      nin: ninContr.compactText!,
-      phone: parsePhoneNumber(phoneContr.compactText!)!,
-      email: emailContr.compactText!,
-      issueDate: issueDate,
-      expiryDate: expiryDate,
-    );
+  Future<void> updateNINNumber() async {
+    final phone = PhoneNumber.from(phoneContr.compactText!);
+    final data = {
+      "nin": ninContr.compactText!,
+      "phone": phone!.getNumberWithFormat(MobileNumberFormat.s255),
+      "issueDate": issueDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
+      "expiryDate": expiryDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
+    };
 
     final futureTracker = ref.read(futureTrackerProvider);
     futureTracker.trackWithNotifier(
-      notifier: ref.read(_pageStateNotifier.notifier),
-      future: ref.read(sessionManagerProvider.notifier).start(data),
-      onSuccess: (p0) => sdkRootNavKey.push3(const QuestionsPage()),
+      notifier: ref.read(_profileStateNotifier.notifier),
+      future: ref.read(profileRepoProvider).updateProfile(data),
+      onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
+      onSuccess: (e) {
+        ref.read(profileProvider.notifier).state = e;
+        sdkRootNavKey.push3(const QuestionsPage());
+      },
     );
+  }
+
+  void next() async {
+    final valid = validate();
+    if (!valid) return;
+
+    await updateNINNumber();
   }
 
   @override

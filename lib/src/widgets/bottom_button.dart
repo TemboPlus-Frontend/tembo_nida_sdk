@@ -24,7 +24,7 @@ class TemboBottomButton extends StatelessWidget {
               ? TemboLoadingIndicator(
                   color: context.colorScheme.onPrimary,
                 )
-              : TemboText(text ?? context.l.next),
+              : TemboText(text ?? context.loc.next),
         ),
       ),
     );

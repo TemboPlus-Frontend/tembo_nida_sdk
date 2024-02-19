@@ -1,23 +1,23 @@
 import 'dart:convert';
 
 import 'package:tembo_core/tembo_core.dart';
+import 'package:tembo_nida_sdk/src/view_models/token_manager.dart';
 
 class IdentityVerificationAPI extends BaseHTTPAPI {
-  IdentityVerificationAPI() : super("onboard/verify");
+  IdentityVerificationAPI() : super("onboard/verify") {
+    updateToken(tokenManager.value);
+  }
 
-  Future<Map<String, dynamic>> getFirstQuestion(String onboardId) async {
-    final data = {"onboardId": onboardId};
-    final result = await post("", body: jsonEncode(data));
+  Future<Map<String, dynamic>> getFirstQuestion() async {
+    final result = await post("");
     return result;
   }
 
   Future<Map<String, dynamic>> sendAnswer(
-    String onboardId,
     String questionCode,
     String answer,
   ) async {
     final data = {
-      "onboardId": onboardId,
       "questionCode": questionCode,
       "answer": answer,
     };

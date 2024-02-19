@@ -7,17 +7,16 @@ import 'api.dart';
 class IdentityRepository {
   final _api = IdentityVerificationAPI();
 
-  Future<Question> getFirstQuestion(String onboardId) async {
-    final body = await _api.getFirstQuestion(onboardId);
+  Future<Question> getFirstQuestion() async {
+    final body = await _api.getFirstQuestion();
     return Question.fromMap(body["result"]);
   }
 
   Future<(NIDAUser? user, ({Result result, Question newQn})?)> sendAnswer(
     Question qn,
-    String onboardId,
     String answer,
   ) async {
-    final body = await _api.sendAnswer(onboardId, qn.code, answer);
+    final body = await _api.sendAnswer(qn.code, answer);
 
     String? code;
     Question? newQn;

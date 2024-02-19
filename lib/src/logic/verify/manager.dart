@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tembo_nida_sdk/src/logic/models/session.dart';
 import 'package:tembo_nida_sdk/src/logic/models/user.dart';
 import 'package:tembo_nida_sdk/src/logic/verify/repo.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
@@ -16,11 +15,8 @@ class VerificationManager extends StateNotifier<List<Result>> {
 
   final _repo = IdentityRepository();
 
-  late Session _session;
-  void init(Session s) => _session = s;
-
   Future<Question> getFirstQuestion() async {
-    final qn = await _repo.getFirstQuestion(_session.onboardId);
+    final qn = await _repo.getFirstQuestion();
     return qn;
   }
 
@@ -28,7 +24,7 @@ class VerificationManager extends StateNotifier<List<Result>> {
     Question qn,
     String answer,
   ) async {
-    final result = await _repo.sendAnswer(qn, _session.onboardId, answer);
+    final result = await _repo.sendAnswer(qn, answer);
     if (result.$2 != null) updateState(result.$2!.result);
     return (user: result.$1, newQn: result.$2?.newQn);
   }
