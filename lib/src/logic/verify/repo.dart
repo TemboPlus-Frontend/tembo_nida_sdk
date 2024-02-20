@@ -44,6 +44,8 @@ class IdentityRepository {
       );
     }
 
+    if (code == "130") return (null, null);
+
     if (code == "00" && user != null) return (user, null);
 
     throw "We could not process the result";

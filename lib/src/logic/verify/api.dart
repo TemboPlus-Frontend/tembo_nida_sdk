@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:tembo_core/tembo_core.dart';
 import 'package:tembo_nida_sdk/src/view_models/token_manager.dart';
 
+import "../common.dart";
+
 class IdentityVerificationAPI extends BaseHTTPAPI {
-  IdentityVerificationAPI() : super("onboard/verify") {
+  IdentityVerificationAPI() : super(root, "onboard/verify") {
     updateToken(tokenManager.value);
   }
 

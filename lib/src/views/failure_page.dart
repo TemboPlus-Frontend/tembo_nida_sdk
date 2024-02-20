@@ -37,18 +37,6 @@ class FailurePage extends TemboPage {
               ),
               child: const TemboText("Jaribu Tena"),
             ),
-           /*  vSpace(),
-            TemboTextButton(
-              onPressed: () => popBackToPrevApp(true),
-              style: TemboButtonStyle.outline(
-                foregroundColor: context.colorScheme.primary,
-                textStyle: context.textTheme.bodyMedium.bold,
-                borderRadius: kBorderRadius3,
-              ),
-              child: const TemboText(
-                "Assume Authenticated successfully",
-              ),
-            ), */
           ],
         ),
       ),

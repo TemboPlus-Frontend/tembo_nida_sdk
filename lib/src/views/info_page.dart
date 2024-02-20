@@ -1,17 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
-import 'package:tembo_nida_sdk/src/logic/profile/manager.dart';
 import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
 import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
-import 'package:tembo_nida_sdk/src/views/questions_page.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 
 import '../../source.dart';
 
 import 'qr_code_scanner.dart';
+import 'session_page.dart';
 
 final _profileStateNotifier = createModelStateNotifier<Profile>();
+final _firstTimeProfileStateNotifier = createModelStateNotifier<Profile>();
 
 class BasicInfoPage extends TemboConsumerPage {
   const BasicInfoPage({super.key});
@@ -29,6 +31,46 @@ class _NIDANumberPageStateView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final profileState = ref.watch(_firstTimeProfileStateNotifier);
+
+    return profileState.maybeWhen(
+      loading: buildLoading,
+      error: buildError,
+      success: (data) => buildBody(context, ref),
+      orElse: buildLoading,
+    );
+  }
+
+  Widget buildError(TemboException exc) {
+    return Scaffold(
+      body: Container(
+        constraints: kMaxConstraints,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const TemboText("We could not fetch your profile"),
+              vSpace(),
+              TemboTextButton.text(
+                text: "Try Again",
+                onPressed: state.fetchProfile,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildLoading() {
+    return const Scaffold(
+      body: Center(
+        child: TemboLoadingIndicator(),
+      ),
+    );
+  }
+
+  Widget buildBody(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: TemboAppBar(label: "Taarifa zako"),
       body: FocusWrapper(
@@ -71,12 +113,6 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                     ],
                     validator: validateTZPhone,
                   ),
-                  /*     TemboTextField.labelled(
-                    "Email",
-                    controller: state.emailContr,
-                    textInputType: TextInputType.emailAddress,
-                    validator: validateEmail,
-                  ), */
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -114,23 +150,50 @@ class _NIDANumberPageStateView extends ConsumerWidget {
   }
 }
 
-class _NIDANumberPageState extends ConsumerState<BasicInfoPage> {
+class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
   late final TextEditingController ninContr, phoneContr, emailContr;
   late DateTime issueDate, expiryDate;
 
   late final GlobalKey<FormState> formKey;
 
   @override
+  Widget build(BuildContext context) => _NIDANumberPageStateView(this);
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    fetchProfile();
+  }
+
+  @override
   void initState() {
     super.initState();
     ninContr = TextEditingController();
-    emailContr = TextEditingController();
     phoneContr = TextEditingController();
 
     issueDate = DateTime.now();
     expiryDate = DateTime.now();
 
     formKey = GlobalKey<FormState>();
+  }
+
+  Future<void> fetchProfile() async {
+    final futureTracker = ref.read(futureTrackerProvider);
+    futureTracker.trackWithNotifier(
+      notifier: ref.read(_firstTimeProfileStateNotifier.notifier),
+      future: ref.read(profileRepoProvider).getProfile(),
+      onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
+      onSuccess: (e) {
+        ref.read(profileProvider.notifier).state = e;
+
+        setState(() {
+          phoneContr.text =
+              e.phone?.getNumberWithFormat(MobileNumberFormat.s0) ?? "";
+          issueDate = e.cardIssueDate ?? DateTime.now();
+          expiryDate = e.cardExpiryDate ?? DateTime.now();
+          ninContr.text = e.nin ?? "";
+        });
+      },
+    );
   }
 
   void updateIssueDate(DateTime date) {
@@ -167,8 +230,8 @@ class _NIDANumberPageState extends ConsumerState<BasicInfoPage> {
     final data = {
       "nin": ninContr.compactText!,
       "phone": phone!.getNumberWithFormat(MobileNumberFormat.s255),
-      "issueDate": issueDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
-      "expiryDate": expiryDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
+      "cardIssueDate": issueDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
+      "cardExpiryDate": expiryDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
     };
 
     final futureTracker = ref.read(futureTrackerProvider);
@@ -178,7 +241,7 @@ class _NIDANumberPageState extends ConsumerState<BasicInfoPage> {
       onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
       onSuccess: (e) {
         ref.read(profileProvider.notifier).state = e;
-        sdkRootNavKey.push3(const QuestionsPage());
+        sdkRootNavKey.to(SessionPage.routeName, const SessionPage());
       },
     );
   }
@@ -189,9 +252,6 @@ class _NIDANumberPageState extends ConsumerState<BasicInfoPage> {
 
     await updateNINNumber();
   }
-
-  @override
-  Widget build(BuildContext context) => _NIDANumberPageStateView(this);
 }
 
 Message? _validateNIDANumber(String? text) {

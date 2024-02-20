@@ -6,14 +6,21 @@ import '../../../source.dart';
 import '../models/profile.dart';
 import 'api.dart';
 
-final profileRepoProvider = Provider((ref) => ProfileRepository());
+final profileProvider = StateProvider<Profile?>((ref) => null);
+
+final profileRepoProvider = Provider((ref) => ProfileRepository(ref));
 
 class ProfileRepository {
+  final ProviderRef ref;
+  ProfileRepository(this.ref);
+
   final _api = ProfileAPI();
 
   Future<Profile> getProfile() async {
     final result = await _api.getProfile();
     final profile = Profile.fromMap(result);
+
+    ref.read(profileProvider.notifier).state = profile;
     return profile;
   }
 
@@ -21,6 +28,8 @@ class ProfileRepository {
     final body = jsonEncode(data);
     final result = await _api.editProfile(body);
     final profile = Profile.fromMap(result);
+
+    ref.read(profileProvider.notifier).state = profile;
     return profile;
   }
 }

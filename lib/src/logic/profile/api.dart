@@ -2,7 +2,7 @@ import 'package:tembo_nida_sdk/src/view_models/token_manager.dart';
 
 import '../../../source.dart';
 
-const root = "https://gateway.temboplus.com/temboplus";
+import "../common.dart";
 
 class ProfileAPI extends BaseHTTPAPI {
   ProfileAPI() : super(root, "profile/me") {
