@@ -113,7 +113,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                     ],
                     validator: validateTZPhone,
                   ),
-                  Column(
+                 /*  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const TemboLabel("Card Issue Date"),
@@ -134,7 +134,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                         onSelected: state.updateExpiryDate,
                       ),
                     ],
-                  ),
+                  ), */
                 ],
               )
             ],

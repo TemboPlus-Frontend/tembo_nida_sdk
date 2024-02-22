@@ -16,6 +16,7 @@ class FailurePage extends TemboPage {
         constraints: kMaxConstraints,
         padding: kPagePadding,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("packages/tembo_nida_sdk/assets/ver_failed.png",
                 height: 150),
