@@ -186,13 +186,13 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
         answerController.clear();
 
         if (data.user == null && data.newQn == null) {
-          sdkRootNavKey.push(const FailurePage());
+          temboNIDASDKRootNavKey.push(const FailurePage());
           return;
         }
 
         if (data.user != null) {
-          sdkRootNavKey.pop();
-          sdkRootNavKey.push(SuccessPage(data.user!));
+          temboNIDASDKRootNavKey.pop();
+          temboNIDASDKRootNavKey.push(SuccessPage(data.user!));
         }
       },
     );

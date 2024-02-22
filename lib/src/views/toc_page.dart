@@ -72,7 +72,8 @@ class _TOCPageState extends State<TOCPage> {
                       onChanged: updateAgreeStatus,
                       checkColor: lightTheme.colorScheme.onPrimary,
                       fillColor: agreedToTOC
-                          ? MaterialStatePropertyAll(lightTheme.colorScheme.primary)
+                          ? MaterialStatePropertyAll(
+                              lightTheme.colorScheme.primary)
                           : null,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
@@ -108,7 +109,7 @@ class _TOCPageState extends State<TOCPage> {
   }
 
   void next() {
-    sdkRootNavKey.push2(const PrepPage());
+    temboNIDASDKRootNavKey.push2(const PrepPage());
   }
 }
 

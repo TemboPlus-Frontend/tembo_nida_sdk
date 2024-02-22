@@ -91,9 +91,9 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                 decoration: TemboTextFieldDecoration(
                   suffixIcon: IconButton(
                     onPressed: state.scanNidaNumber,
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.qr_code_scanner_rounded,
-                      color: Colors.black45,
+                      color: context.colorScheme.onSurface,
                     ),
                   ),
                 ),
@@ -205,7 +205,8 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
   }
 
   void scanNidaNumber() async {
-    final code = await sdkRootNavKey.push3<Barcode?>(const QRCodeScannerPage());
+    final code =
+        await temboNIDASDKRootNavKey.push3<Barcode?>(const QRCodeScannerPage());
     if (code == null) return;
     if (code.type == BarcodeType.text) {
       ninContr.text = code.displayValue ?? "";
@@ -241,7 +242,7 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
       onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
       onSuccess: (e) {
         ref.read(profileProvider.notifier).state = e;
-        sdkRootNavKey.to(SessionPage.routeName, const SessionPage());
+        temboNIDASDKRootNavKey.to(SessionPage.routeName, const SessionPage());
       },
     );
   }

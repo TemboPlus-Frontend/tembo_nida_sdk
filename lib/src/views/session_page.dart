@@ -55,8 +55,8 @@ class _SessionPageState extends TemboConsumerState<SessionPage> {
       next.maybeWhen(
         orElse: () {},
         success: (_) {
-          sdkRootNavKey.pop();
-          sdkRootNavKey.push3(const QuestionsPage());
+          temboNIDASDKRootNavKey.pop();
+          temboNIDASDKRootNavKey.push3(const QuestionsPage());
         },
       );
     });

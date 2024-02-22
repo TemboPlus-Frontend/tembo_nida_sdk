@@ -7,10 +7,11 @@ import '../view_models/locale_manager.dart';
 import '../view_models/navigator_manager.dart';
 import '../view_models/theme_manager.dart';
 
-final sdkRootNavKey = GlobalKey<NavigatorState>();
+final temboNIDASDKRootNavKey = GlobalKey<NavigatorState>();
+final temboNIDASDKMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
 void popBackToPrevApp([NIDAUser? result]) {
-  sdkRootNavKey.popToFirstPage();
+  temboNIDASDKRootNavKey.popToFirstPage();
   prevAppNavManager.state.pop(result);
 }
 
@@ -28,11 +29,11 @@ Future<T?> pushApp<T>(BuildContext context, String name, Widget page) async {
                 return ProviderScope(
                   child: MaterialApp(
                     home: page,
-                    navigatorKey: sdkRootNavKey,
+                    navigatorKey: temboNIDASDKRootNavKey,
                     locale: temboLocale.locale,
                     debugShowCheckedModeBanner: false,
                     theme: theme == ThemeMode.light ? _lightTheme : _darkTheme,
-                    scaffoldMessengerKey: rootMessengerKey,
+                    scaffoldMessengerKey: temboNIDASDKMessengerKey,
                     localizationsDelegates:
                         AppLocalizations.localizationsDelegates,
                     supportedLocales: AppLocalizations.supportedLocales,

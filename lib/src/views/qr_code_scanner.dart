@@ -40,7 +40,7 @@ class _QRCodeScannerPageState extends ConsumerState<QRCodeScannerPage> {
           final List<Barcode> barcodes = capture.barcodes;
           if (barcodes.isNotEmpty) {
             controller.stop();
-            sdkRootNavKey.pop(barcodes.first);
+            temboNIDASDKRootNavKey.pop(barcodes.first);
           }
         },
       ),

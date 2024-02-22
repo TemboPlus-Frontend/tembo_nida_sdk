@@ -27,7 +27,7 @@ class FailurePage extends TemboPage {
             vSpace(),
             TemboTextButton(
               onPressed: () {
-                sdkRootNavKey.currentState!
+                temboNIDASDKRootNavKey.currentState!
                     .popUntil((route) => route.settings.name == "nin");
               },
               style: TemboButtonStyle.outline(
