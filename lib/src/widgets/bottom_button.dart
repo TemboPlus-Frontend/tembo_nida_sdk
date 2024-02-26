@@ -1,3 +1,5 @@
+import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
+
 import '../../source.dart';
 
 class TemboBottomButton extends StatelessWidget {
@@ -24,7 +26,7 @@ class TemboBottomButton extends StatelessWidget {
               ? TemboLoadingIndicator(
                   color: context.colorScheme.onPrimary,
                 )
-              : TemboText(text ?? context.loc.next),
+              : TemboText(text ?? context.l.next),
         ),
       ),
     );

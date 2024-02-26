@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
 import 'package:tembo_nida_sdk/src/logic/verify/manager.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
@@ -52,7 +53,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
               vSpace(),
               TemboTextButton(
                 onPressed: state.retry,
-                child: TemboText(context.loc.tryAgain),
+                child: TemboText(context.l.tryAgain),
               ),
             ],
           ),

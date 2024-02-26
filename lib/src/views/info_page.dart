@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
 import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
 import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
@@ -143,7 +144,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
       ),
       bottomNavigationBar: TemboBottomButton(
         callback: state.next,
-        text: context.loc.next,
+        text: context.l.next,
         loading: ref.watch(_profileStateNotifier).isLoading,
       ),
     );

@@ -122,7 +122,7 @@ class _Button extends StatelessWidget {
     return SafeArea(
       child: TemboTextButton(
         onPressed: () {},
-        child: TemboText(context.loc.next),
+        child: TemboText(context.l.next),
       ),
     );
   }

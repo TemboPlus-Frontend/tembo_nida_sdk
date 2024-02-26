@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/source.dart';
 import 'package:tembo_nida_sdk/src/logic/models/user.dart';
 
+import '../../localizations/app_localizations.dart';
 import '../view_models/locale_manager.dart';
 import '../view_models/navigator_manager.dart';
 import '../view_models/theme_manager.dart';

@@ -1,0 +1,42 @@
+{
+    "yes": "Yes",
+    "no": "No",
+    "home": "Home",
+    "account": "Account",
+    "hide": "Hide",
+    "show": "Show",
+    "beCareful": "Be careful!",
+    "seeAll": "See All",
+    "unknownError": "An unknown error happened",
+    "next": "Next",
+    "tryAgain": "Try Again",
+    "refresh": "Refresh",
+    "done": "Done",
+    "remove": "Remove",
+    "from": "From",
+    "to": "To",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "phone": "Phone",
+    "amount": "Amount",
+    "preview": "Preview",
+    "send": "Send",
+    "sendLink": "Send link to the customer",
+    "close": "Close",
+    "comingSoon": "Coming Soon!",
+    "validationError": "Please check your information carefully",
+    "isRequired": "{name} is required",
+    "@isRequired": {
+        "description": "Used in forms when a certain required field is not filled",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "accountNumber": "Account Number",
+    "bank": "Bank",
+    "description": "Description",
+    "channel": "Channel",
+    "date": "Date"
+}
