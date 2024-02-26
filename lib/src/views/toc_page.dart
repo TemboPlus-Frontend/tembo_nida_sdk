@@ -1,3 +1,4 @@
+import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,7 +24,7 @@ class _TOCPageState extends State<TOCPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TemboAppBar(
-        label: context.loc.toc.title,
+        label: context.l.toc.title,
         onBackPress: prevAppNavManager.value.pop,
       ),
       extendBodyBehindAppBar: true,
@@ -46,7 +47,7 @@ class _TOCPageState extends State<TOCPage> {
                       const TemboText("TEMBO PLUS INC."),
                       const SizedBox(height: 10),
                       TemboText(
-                        context.loc.toc.desc,
+                        context.l.toc.desc,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 14,
@@ -57,7 +58,7 @@ class _TOCPageState extends State<TOCPage> {
                       TemboTextButton(
                         onPressed: showTOC,
                         style: const TemboButtonStyle.outline(),
-                        child: TemboText(context.loc.toc.readTerms),
+                        child: TemboText(context.l.toc.readTermsActions),
                       ),
                     ],
                   ),
@@ -81,7 +82,7 @@ class _TOCPageState extends State<TOCPage> {
                     const SizedBox(width: 10),
                     Expanded(
                       child: TemboText(
-                        context.loc.toc.readAlready,
+                        context.l.toc.readTermsConfirm,
                         style: const TextStyle(fontSize: 12),
                       ),
                     )

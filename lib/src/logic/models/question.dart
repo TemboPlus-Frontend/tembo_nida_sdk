@@ -33,16 +33,16 @@ class Question {
       Question.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Question(inEnglish: $inEnglish, inSwahili: $inSwahili, code: $code)';
+  String toString() =>
+      'Question(inEnglish: $inEnglish, inSwahili: $inSwahili, code: $code)';
 
   @override
   bool operator ==(covariant Question other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.inEnglish == inEnglish &&
-      other.inSwahili == inSwahili &&
-      other.code == code;
+
+    return other.inEnglish == inEnglish &&
+        other.inSwahili == inSwahili &&
+        other.code == code;
   }
 
   @override

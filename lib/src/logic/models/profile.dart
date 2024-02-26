@@ -69,7 +69,7 @@ class Profile {
       nin: map['nin'] != null ? map['nin'] as String : null,
       phone: map['phone'] != null ? PhoneNumber.from(map['phone']) : null,
       email: map['email'] != null ? map['email'] as String : null,
-      onboardId: map['onboardId']!= null? map['onboardId'] as String : null,
+      onboardId: map['onboardId'] != null ? map['onboardId'] as String : null,
     );
   }
 
@@ -86,25 +86,24 @@ class Profile {
   @override
   bool operator ==(covariant Profile other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.phone == phone &&
-      other.cardIssueDate == cardIssueDate &&
-      other.cardExpiryDate == cardExpiryDate &&
-      other.nin == nin &&
-      other.email == email &&
-      other.onboardId == onboardId;
+
+    return other.id == id &&
+        other.phone == phone &&
+        other.cardIssueDate == cardIssueDate &&
+        other.cardExpiryDate == cardExpiryDate &&
+        other.nin == nin &&
+        other.email == email &&
+        other.onboardId == onboardId;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      phone.hashCode ^
-      cardIssueDate.hashCode ^
-      cardExpiryDate.hashCode ^
-      nin.hashCode ^
-      email.hashCode ^
-      onboardId.hashCode;
+        phone.hashCode ^
+        cardIssueDate.hashCode ^
+        cardExpiryDate.hashCode ^
+        nin.hashCode ^
+        email.hashCode ^
+        onboardId.hashCode;
   }
 }

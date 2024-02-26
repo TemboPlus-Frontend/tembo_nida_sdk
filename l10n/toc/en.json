@@ -1,0 +1,9 @@
+[
+    {
+        "_id": "toc",
+        "title": "Terms And Conditions",
+        "desc": "You must agree to the terms and conditions before you can continue.",
+        "readTermsActions": "Read Our Terms & Conditions",
+        "readTermsConfirm": "I have read and understood the terms and conditions."
+    }
+]
