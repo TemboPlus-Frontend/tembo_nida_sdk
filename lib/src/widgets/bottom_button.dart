@@ -1,5 +1,3 @@
-import 'package:tembo_core/tembo_core.dart';
-
 import '../../source.dart';
 
 class TemboBottomButton extends StatelessWidget {
