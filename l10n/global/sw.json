@@ -21,7 +21,6 @@
   "amount": "Kiasi",
   "preview": "Angalia",
   "send": "Tuma",
-  "sendLink": "Tuma link kwa mteja",
   "close": "Funga",
   "comingSoon": "Inakuja Hivi Karibuni!",
   "validationError": "Tafadhari angalia taarifa zako vizuri",
@@ -30,5 +29,8 @@
   "bank": "Benki",
   "description": "Maelezo",
   "channel": "Channel",
-  "date": "Tarehe"
+  "date": "Tarehe",
+  "okay": "Okay",
+  "hi": "Habari",
+  "isInvalid": "Tafadhali angalia {name} kwa umakini. Tunadhani si sahihi."
 }

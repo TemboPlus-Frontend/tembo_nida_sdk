@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
 import 'package:tembo_nida_sdk/src/logic/verify/manager.dart';
+import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
 
@@ -49,7 +49,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TemboText("An error happened"),
+              TemboText(context.l.unknownError),
               vSpace(),
               TemboTextButton(
                 onPressed: state.retry,
@@ -82,24 +82,23 @@ class _QuestionsPageStateView extends ConsumerWidget {
   }
 
   Widget buildQuestion(Question qn) {
+    final locale = localeManager.value;
+
     return Builder(builder: (context) {
       return Scaffold(
-        appBar: TemboAppBar(label: "Jibu Maswali"),
+        appBar: TemboAppBar(label: context.l.ninQuestionPage.title),
         body: FocusWrapper(
           child: ListView(
             padding: kPagePadding,
             children: [
-              // const TemboFormLabel("Question (English)"),
-              // buildQn(qn.inEnglish),
-              // vSpace(),
               TemboLabel(
-                "Swali: ",
+                "${context.l.ninQuestionPage.question}: ",
                 style: context.textTheme.bodyLarge.bold.withPrimaryColor,
               ),
-              buildQn(qn.inSwahili),
+              buildQn(locale.isEN ? qn.inSwahili : qn.inSwahili),
               vSpace(),
               TemboTextField.labelled(
-                "Jibu:",
+                "${context.l.ninQuestionPage.answer}:",
                 controller: state.answerController,
                 textCapitalization: TextCapitalization.words,
               )
@@ -108,7 +107,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
         ),
         bottomNavigationBar: TemboBottomButton(
           callback: state.sendAnswer,
-          text: "Send Answer",
+          text: context.l.ninQuestionPage.sendAnswerAction,
         ),
       );
     });
@@ -164,7 +163,7 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
 
   bool validate() {
     if (answerController.compactText == null) {
-      showSnackbar("Tafadhari andika jibu sahihi");
+      showSnackbar(context.l.isRequired(context.l.ninQuestionPage.answer));
       return false;
     }
 

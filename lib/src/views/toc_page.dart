@@ -1,4 +1,3 @@
-import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:url_launcher/url_launcher.dart';
 

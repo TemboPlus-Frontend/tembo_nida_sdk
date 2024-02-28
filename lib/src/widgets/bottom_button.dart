@@ -1,5 +1,3 @@
-import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
-
 import '../../source.dart';
 
 class TemboBottomButton extends StatelessWidget {

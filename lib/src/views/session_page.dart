@@ -23,7 +23,7 @@ class _SessionPageState extends TemboConsumerState<SessionPage> {
   Future<String> initiateSession() async {
     final profile = ref.read(profileProvider);
     if (profile == null) {
-      throw "For some reason we can't find the profile. Consider starting again";
+      throw context.l.profileCheck.error;
     }
 
     final id = profile.onboardId?.trim() ?? "";
@@ -77,10 +77,10 @@ class _SessionPageState extends TemboConsumerState<SessionPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const TemboText("We could not start a session"),
+              TemboText(context.l.ninStartSession.couldNotStartError),
               vSpace(),
               TemboTextButton.text(
-                text: "Try Again",
+                text: context.l.tryAgain,
                 onPressed: onPageLoad,
               )
             ],

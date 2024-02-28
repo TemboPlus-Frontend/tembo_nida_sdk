@@ -30,7 +30,7 @@ class SuccessPage extends TemboPage {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "Hi ",
+                    text: "${context.l.hi} ",
                     style: context.textTheme.bodyMedium,
                   ),
                   TextSpan(
@@ -38,7 +38,7 @@ class SuccessPage extends TemboPage {
                     style: context.textTheme.bodyMedium.bold,
                   ),
                   TextSpan(
-                    text: ", We have successfully verified your NIN Number",
+                    text: ", ${context.l.ninSuccessPage.successMsg}",
                     style: context.textTheme.bodyMedium,
                   ),
                 ],
@@ -50,7 +50,7 @@ class SuccessPage extends TemboPage {
       ),
       bottomNavigationBar: TemboBottomButton(
         callback: () => popBackToPrevApp(user),
-        text: "Okay",
+        text: context.l.okay,
       ),
     );
   }

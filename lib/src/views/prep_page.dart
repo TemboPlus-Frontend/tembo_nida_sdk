@@ -16,8 +16,10 @@ class PrepPage extends TemboStatefulPage {
 class _PrepPageState extends State<PrepPage> {
   @override
   Widget build(BuildContext context) {
+    final steps = context.l.ninSteps.steps.split(":");
+
     return Scaffold(
-      appBar: TemboAppBar(label: "Utangulizi"),
+      appBar: TemboAppBar(),
       body: ListView(
         padding: kHorPadding,
         children: [
@@ -27,19 +29,19 @@ class _PrepPageState extends State<PrepPage> {
                 height: 180),
           ),
           TemboText.center(
-            "Ili kuendelea kutumia huduma hii unahitaji kuthibitisha utambulisho wako wa NIDA. Hii ni kwa ajili ya kuhakikisha usalama wa pesa zako.",
+            context.l.ninSteps.desc,
             style: context.textTheme.bodyLarge,
           ),
           vSpace(30),
           Padding(
             padding: left(25),
             child: TemboText.bold(
-              "Hatua za Kufuata:",
+              context.l.ninSteps.me,
               style: context.textTheme.bodyLarge.withPrimaryColor,
             ),
           ),
           ListView.separated(
-            itemCount: _steps.length,
+            itemCount: steps.length,
             shrinkWrap: true,
             padding: left(25),
             physics: const NeverScrollableScrollPhysics(),
@@ -59,7 +61,7 @@ class _PrepPageState extends State<PrepPage> {
                     style: context.textTheme.bodyMedium.bold.withOnPrimaryColor,
                   ),
                 ),
-                title: TemboText(_steps[i]),
+                title: TemboText(steps[i]),
               );
             },
           ),
@@ -67,7 +69,7 @@ class _PrepPageState extends State<PrepPage> {
       ),
       bottomNavigationBar: TemboBottomButton(
         callback: onPressed,
-        text: "Endelea",
+        text: context.l.next,
       ),
     );
   }
@@ -76,9 +78,3 @@ class _PrepPageState extends State<PrepPage> {
     temboNIDASDKRootNavKey.push3(const BasicInfoPage());
   }
 }
-
-const _steps = [
-  "Ingiza Namba ya NIDA",
-  "Jibu Maswali kutoka NIDA",
-  "Pata Majibu",
-];

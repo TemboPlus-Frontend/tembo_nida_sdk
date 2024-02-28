@@ -21,7 +21,6 @@
     "amount": "Amount",
     "preview": "Preview",
     "send": "Send",
-    "sendLink": "Send link to the customer",
     "close": "Close",
     "comingSoon": "Coming Soon!",
     "validationError": "Please check your information carefully",
@@ -34,9 +33,20 @@
             }
         }
     },
+    "isInvalid": "Please check {name} carefully. We think it is invalid.",
+    "@isInvalid": {
+        "description": "Used in forms when a certain required field is invalid",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
     "accountNumber": "Account Number",
     "bank": "Bank",
     "description": "Description",
     "channel": "Channel",
-    "date": "Date"
+    "date": "Date",
+    "okay": "Okay",
+    "hi": "Hi"
 }

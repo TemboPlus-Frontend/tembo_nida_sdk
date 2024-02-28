@@ -1,0 +1,32 @@
+[
+    {
+        "_id": "profile_check",
+        "error": "Kwa sababu fulani hatuwezi kupata wasifu. Fikiria kuanza tena"
+    },
+    {
+        "_id": "nin_start_session",
+        "couldNotStartError": "Hatukuweza kuanzisha session"
+    },
+    {
+        "_id": "nin_steps",
+        "me": "Hatua za kufuata",
+        "desc": "Ili kuendelea kutumia huduma hii unahitaji kuthibitisha utambulisho wako wa NIDA. Hii ni kuhakikisha usalama wa pesa zako.",
+        "steps": "Ingiza Namba ya NIDA:Jibu Maswali kutoka NIDA:Pata Majibu"
+    },
+    {
+        "_id": "nin_info_page",
+        "nin": "Namba ya NIDA",
+        "title": "Taarifa zako"
+    },
+    {
+        "_id": "nin_question_page",
+        "title": "Jibu Maswali",
+        "question": "Swali",
+        "answer": "Jibu",
+        "sendAnswerAction": "Tuma Jibu"
+    },
+    {
+        "_id": "nin_success_page",
+        "success_msg": "Tumethibitisha namba yako ya NIDA"
+    }
+]

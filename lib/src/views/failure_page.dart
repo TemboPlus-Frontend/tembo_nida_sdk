@@ -36,7 +36,7 @@ class FailurePage extends TemboPage {
                 textStyle: context.textTheme.bodyMedium.bold,
                 borderRadius: kBorderRadius3,
               ),
-              child: const TemboText("Jaribu Tena"),
+              child: TemboText(context.l.tryAgain),
             ),
           ],
         ),

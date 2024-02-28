@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tembo_nida_sdk/src/extensions/context_extension.dart';
 import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
 import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
 import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
@@ -44,22 +43,24 @@ class _NIDANumberPageStateView extends ConsumerWidget {
 
   Widget buildError(TemboException exc) {
     return Scaffold(
-      body: Container(
-        constraints: kMaxConstraints,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const TemboText("We could not fetch your profile"),
-              vSpace(),
-              TemboTextButton.text(
-                text: "Try Again",
-                onPressed: state.fetchProfile,
-              )
-            ],
+      body: Builder(builder: (context) {
+        return Container(
+          constraints: kMaxConstraints,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TemboText(context.l.profileCheck.error),
+                vSpace(),
+                TemboTextButton.text(
+                  text: context.l.tryAgain,
+                  onPressed: state.fetchProfile,
+                )
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -73,7 +74,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
 
   Widget buildBody(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: TemboAppBar(label: "Taarifa zako"),
+      appBar: TemboAppBar(label: context.l.ninInfoPage.title),
       body: FocusWrapper(
         child: Form(
           key: state.formKey,
@@ -81,7 +82,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
             padding: kPagePadding,
             children: [
               TemboTextField.labelled(
-                "Namba ya NIDA",
+                context.l.ninInfoPage.nin,
                 controller: state.ninContr,
                 formatters: const [
                   OnlyIntegerFormatter(),
@@ -105,7 +106,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                 overflowSpacing: 20,
                 children: [
                   TemboTextField.labelled(
-                    "Phone",
+                    context.l.phone,
                     controller: state.phoneContr,
                     textInputType: TextInputType.phone,
                     formatters: const [
@@ -114,28 +115,6 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                     ],
                     validator: validateTZPhone,
                   ),
-                  /*  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const TemboLabel("Card Issue Date"),
-                      TemboDatePicker(
-                        date: state.issueDate,
-                        label: (d) => d.format(),
-                        onSelected: state.updateIssueDate,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const TemboLabel("Card Expiry Date"),
-                      TemboDatePicker(
-                        date: state.expiryDate,
-                        label: (d) => d.format(),
-                        onSelected: state.updateExpiryDate,
-                      ),
-                    ],
-                  ), */
                 ],
               )
             ],
@@ -219,7 +198,7 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
     if (valid) {
       final phone = PhoneNumber.from(phoneContr.compactText ?? "");
       if (phone == null) {
-        showSnackbar("Invalid phone number");
+        showSnackbar(context.l.isInvalid(context.l.phone));
         return false;
       }
     }

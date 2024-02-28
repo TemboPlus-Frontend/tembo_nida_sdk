@@ -1,0 +1,32 @@
+[
+    {
+        "_id": "profile_check",
+        "error": "For some reason we can't find the profile. Consider starting again"
+    },
+    {
+        "_id": "nin_start_session",
+        "couldNotStartError": "We could not start a session"
+    },
+    {
+        "_id": "nin_steps",
+        "me": "Steps to follow",
+        "desc": "To continue using this service you need to confirm your NIDA identity. This is to ensure the safety of your money.",
+        "steps": "Enter NIDA Number:Answer Questions from NIDA:Get Answers"
+    },
+    {
+        "_id": "nin_info_page",
+        "nin": "NIN Number",
+        "title": "Your details"
+    },
+    {
+        "_id": "nin_question_page",
+        "title": "Answer Questions",
+        "question": "Question",
+        "answer": "Answer",
+        "sendAnswerAction": "Send Answer"
+    },
+    {
+        "_id": "nin_success_page",
+        "success_msg": "We have successfully verified your NIN Number"
+    }
+]
