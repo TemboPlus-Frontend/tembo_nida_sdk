@@ -26,65 +26,22 @@ class AppLocalizationsSw extends AppLocalizations {
   Toc get toc => TocSw();
 
   @override
-  String get from => "Kutoka";
-
-  @override
-  String get comingSoon => "Inakuja Hivi Karibuni!";
-
-  @override
-  String isInvalid(String name) =>
-      "Tafadhali angalia $name kwa umakini. Tunadhani si sahihi.";
-
-  @override
-  String get no => "Hapana";
-
-  @override
-  String get show => "Onesha";
+  String get beCareful => "Kuwa Makini!";
 
   @override
   String get done => "Tayari";
 
   @override
-  String get yes => "Ndio";
-
-  @override
-  String get beCareful => "Kuwa Makini!";
+  String isRequired(String name) => "$name: Ni Lazima Ujaze";
 
   @override
   String get accountNumber => "Akaunti Namba";
 
   @override
-  String get channel => "Channel";
-
-  @override
-  String get okay => "Okay";
-
-  @override
-  String get preview => "Angalia";
-
-  @override
-  String get validationError => "Tafadhari angalia taarifa zako vizuri";
-
-  @override
   String get bank => "Benki";
 
   @override
-  String get close => "Funga";
-
-  @override
-  String get home => "Nyumbani";
-
-  @override
-  String get tryAgain => "Jaribu Tena";
-
-  @override
-  String get send => "Tuma";
-
-  @override
   String get date => "Tarehe";
-
-  @override
-  String get hi => "Habari";
 
   @override
   String get unknownError => "Kuna tatizo limetokea";
@@ -93,16 +50,40 @@ class AppLocalizationsSw extends AppLocalizations {
   String get confirm => "Thibitisha";
 
   @override
-  String isRequired(String name) => "$name: Ni Lazima Ujaze";
-
-  @override
   String get phone => "Namba Ya Simu";
 
   @override
   String get amount => "Kiasi";
 
   @override
+  String get channel => "Channel";
+
+  @override
+  String get no => "Hapana";
+
+  @override
+  String get next => "Endelea";
+
+  @override
+  String get from => "Kutoka";
+
+  @override
+  String get send => "Tuma";
+
+  @override
+  String get validationError => "Tafadhari angalia taarifa zako vizuri";
+
+  @override
+  String get hi => "Habari";
+
+  @override
+  String get preview => "Angalia";
+
+  @override
   String get description => "Maelezo";
+
+  @override
+  String get okay => "Okay";
 
   @override
   String get remove => "Toa";
@@ -111,22 +92,44 @@ class AppLocalizationsSw extends AppLocalizations {
   String get to => "Kwenda";
 
   @override
-  String get cancel => "Ghairi";
+  String get close => "Funga";
 
   @override
-  String get refresh => "Onyesha upya";
+  String isInvalid(String name) =>
+      "Tafadhali angalia $name kwa umakini. Tunadhani si sahihi.";
 
   @override
   String get account => "Akaunti";
 
   @override
-  String get hide => "Ficha";
-
-  @override
-  String get next => "Endelea";
-
-  @override
   String get seeAll => "Ona Yote";
+
+  @override
+  String get tryAgain => "Jaribu Tena";
+
+  @override
+  String get comingSoon => "Inakuja Hivi Karibuni!";
+
+  @override
+  String get email => "Barua Pepe (Email)";
+
+  @override
+  String get home => "Nyumbani";
+
+  @override
+  String get show => "Onesha";
+
+  @override
+  String get refresh => "Onyesha upya";
+
+  @override
+  String get cancel => "Ghairi";
+
+  @override
+  String get yes => "Ndio";
+
+  @override
+  String get hide => "Ficha";
 }
 
 class ProfileCheckSw extends ProfileCheck {
@@ -163,6 +166,9 @@ class NinInfoPageSw extends NinInfoPage {
 
 class NinQuestionPageSw extends NinQuestionPage {
   @override
+  String get sendAnswerAction => "Tuma Jibu";
+
+  @override
   String get title => "Jibu Maswali";
 
   @override
@@ -170,9 +176,6 @@ class NinQuestionPageSw extends NinQuestionPage {
 
   @override
   String get answer => "Jibu";
-
-  @override
-  String get sendAnswerAction => "Tuma Jibu";
 }
 
 class NinSuccessPageSw extends NinSuccessPage {
@@ -182,9 +185,6 @@ class NinSuccessPageSw extends NinSuccessPage {
 
 class TocSw extends Toc {
   @override
-  String get readTermsConfirm => "Nimesoma na kuelewa sheria na masharti.";
-
-  @override
   String get title => "Sheria Na Masharti";
 
   @override
@@ -192,4 +192,7 @@ class TocSw extends Toc {
 
   @override
   String get readTermsActions => "Soma Sheria na Masharti Yetu";
+
+  @override
+  String get readTermsConfirm => "Nimesoma na kuelewa sheria na masharti.";
 }

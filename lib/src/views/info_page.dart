@@ -101,21 +101,11 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                 ),
               ),
               vSpace(),
-              OverflowBar(
-                spacing: 20,
-                overflowSpacing: 20,
-                children: [
-                  TemboTextField.labelled(
-                    context.l.phone,
-                    controller: state.phoneContr,
-                    textInputType: TextInputType.phone,
-                    formatters: const [
-                      OnlyIntegerFormatter(),
-                      FixedLengthFormatter(10)
-                    ],
-                    validator: validateTZPhone,
-                  ),
-                ],
+              TemboTextField.labelled(
+                context.l.email,
+                controller: state.emailContr,
+                textInputType: TextInputType.emailAddress,
+                validator: validateEmail,
               )
             ],
           ),
@@ -131,8 +121,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
 }
 
 class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
-  late final TextEditingController ninContr, phoneContr, emailContr;
-  late DateTime issueDate, expiryDate;
+  late final TextEditingController ninContr, emailContr;
 
   late final GlobalKey<FormState> formKey;
 
@@ -148,10 +137,7 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
   void initState() {
     super.initState();
     ninContr = TextEditingController();
-    phoneContr = TextEditingController();
-
-    issueDate = DateTime.now();
-    expiryDate = DateTime.now();
+    emailContr = TextEditingController();
 
     formKey = GlobalKey<FormState>();
   }
@@ -166,22 +152,11 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
         ref.read(profileProvider.notifier).state = e;
 
         setState(() {
-          phoneContr.text =
-              e.phone?.getNumberWithFormat(MobileNumberFormat.s0) ?? "";
-          issueDate = e.cardIssueDate ?? DateTime.now();
-          expiryDate = e.cardExpiryDate ?? DateTime.now();
+          emailContr.text = e.email ?? "";
           ninContr.text = e.nin ?? "";
         });
       },
     );
-  }
-
-  void updateIssueDate(DateTime date) {
-    setState(() => issueDate = date);
-  }
-
-  void updateExpiryDate(DateTime date) {
-    setState(() => issueDate = date);
   }
 
   void scanNidaNumber() async {
@@ -195,24 +170,16 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
 
   bool validate() {
     final valid = formKey.currentState?.validate() ?? false;
-    if (valid) {
-      final phone = PhoneNumber.from(phoneContr.compactText ?? "");
-      if (phone == null) {
-        showSnackbar(context.l.isInvalid(context.l.phone));
-        return false;
-      }
-    }
-
     return valid;
   }
 
   Future<void> updateNINNumber() async {
-    final phone = PhoneNumber.from(phoneContr.compactText!);
+    final date = DateTime.now().toUtc().format("yyyy-MM-dd'T'HH:mm:ss'Z'");
     final data = {
+      "cardIssueDate": date,
+      "cardExpiryDate": date,
       "nin": ninContr.compactText!,
-      "phone": phone!.getNumberWithFormat(MobileNumberFormat.s255),
-      "cardIssueDate": issueDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
-      "cardExpiryDate": expiryDate.toUtc().format("yyyy-MM-ddThh:mm:ss"),
+      "email": emailContr.compactText!,
     };
 
     final futureTracker = ref.read(futureTrackerProvider);

@@ -26,65 +26,22 @@ class AppLocalizationsEn extends AppLocalizations {
   Toc get toc => TocEn();
 
   @override
-  String get from => "From";
-
-  @override
-  String get comingSoon => "Coming Soon!";
-
-  @override
-  String isInvalid(String name) =>
-      "Please check $name carefully. We think it is invalid.";
-
-  @override
-  String get no => "No";
-
-  @override
-  String get show => "Show";
+  String get beCareful => "Be careful!";
 
   @override
   String get done => "Done";
 
   @override
-  String get yes => "Yes";
-
-  @override
-  String get beCareful => "Be careful!";
+  String isRequired(String name) => "$name is required";
 
   @override
   String get accountNumber => "Account Number";
 
   @override
-  String get channel => "Channel";
-
-  @override
-  String get okay => "Okay";
-
-  @override
-  String get preview => "Preview";
-
-  @override
-  String get validationError => "Please check your information carefully";
-
-  @override
   String get bank => "Bank";
 
   @override
-  String get close => "Close";
-
-  @override
-  String get home => "Home";
-
-  @override
-  String get tryAgain => "Try Again";
-
-  @override
-  String get send => "Send";
-
-  @override
   String get date => "Date";
-
-  @override
-  String get hi => "Hi";
 
   @override
   String get unknownError => "An unknown error happened";
@@ -93,16 +50,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confirm => "Confirm";
 
   @override
-  String isRequired(String name) => "$name is required";
-
-  @override
   String get phone => "Phone";
 
   @override
   String get amount => "Amount";
 
   @override
+  String get channel => "Channel";
+
+  @override
+  String get no => "No";
+
+  @override
+  String get next => "Next";
+
+  @override
+  String get from => "From";
+
+  @override
+  String get send => "Send";
+
+  @override
+  String get validationError => "Please check your information carefully";
+
+  @override
+  String get hi => "Hi";
+
+  @override
+  String get preview => "Preview";
+
+  @override
   String get description => "Description";
+
+  @override
+  String get okay => "Okay";
 
   @override
   String get remove => "Remove";
@@ -111,22 +92,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get to => "To";
 
   @override
-  String get cancel => "Cancel";
+  String get close => "Close";
 
   @override
-  String get refresh => "Refresh";
+  String isInvalid(String name) =>
+      "Please check $name carefully. We think it is invalid.";
 
   @override
   String get account => "Account";
 
   @override
-  String get hide => "Hide";
-
-  @override
-  String get next => "Next";
-
-  @override
   String get seeAll => "See All";
+
+  @override
+  String get tryAgain => "Try Again";
+
+  @override
+  String get comingSoon => "Coming Soon!";
+
+  @override
+  String get email => "Email";
+
+  @override
+  String get home => "Home";
+
+  @override
+  String get show => "Show";
+
+  @override
+  String get refresh => "Refresh";
+
+  @override
+  String get cancel => "Cancel";
+
+  @override
+  String get yes => "Yes";
+
+  @override
+  String get hide => "Hide";
 }
 
 class ProfileCheckEn extends ProfileCheck {
@@ -163,6 +166,9 @@ class NinInfoPageEn extends NinInfoPage {
 
 class NinQuestionPageEn extends NinQuestionPage {
   @override
+  String get sendAnswerAction => "Send Answer";
+
+  @override
   String get title => "Answer Questions";
 
   @override
@@ -170,9 +176,6 @@ class NinQuestionPageEn extends NinQuestionPage {
 
   @override
   String get answer => "Answer";
-
-  @override
-  String get sendAnswerAction => "Send Answer";
 }
 
 class NinSuccessPageEn extends NinSuccessPage {
@@ -182,10 +185,6 @@ class NinSuccessPageEn extends NinSuccessPage {
 
 class TocEn extends Toc {
   @override
-  String get readTermsConfirm =>
-      "I have read and understood the terms and conditions.";
-
-  @override
   String get title => "Terms And Conditions";
 
   @override
@@ -194,4 +193,8 @@ class TocEn extends Toc {
 
   @override
   String get readTermsActions => "Read Our Terms & Conditions";
+
+  @override
+  String get readTermsConfirm =>
+      "I have read and understood the terms and conditions.";
 }
