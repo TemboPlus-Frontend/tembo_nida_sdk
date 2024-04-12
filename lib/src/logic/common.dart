@@ -1,1 +1,1 @@
-const root = "https://gateway.temboplus.com/temboplus";
+const root = "https://api.afloat.money/v1";
