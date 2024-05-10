@@ -10,7 +10,7 @@
     {
         "_id": "nin_steps",
         "me": "Hatua za kufuata",
-        "desc": "Ili kuendelea kutumia huduma hii unahitaji kuthibitisha utambulisho wako wa NIDA. Hii ni kuhakikisha usalama wa pesa zako.",
+        "desc": "Ili kuendelea kutumia huduma hii unahitaji kuthibitisha utambulisho wako wa NIDA. Hii ni kuhakikisha usalama wa pesa zako",
         "steps": "Ingiza Namba ya NIDA:Jibu Maswali kutoka NIDA:Pata Majibu"
     },
     {
@@ -28,5 +28,9 @@
     {
         "_id": "nin_success_page",
         "success_msg": "Tumethibitisha namba yako ya NIDA"
+    },
+    {
+        "_id": "nin_failure_page",
+        "msg": "We were unable to verify your identity. There are questions you have not answered correctly. Please try again later"
     }
 ]

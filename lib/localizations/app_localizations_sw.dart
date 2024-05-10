@@ -23,80 +23,49 @@ class AppLocalizationsSw extends AppLocalizations {
   NinSuccessPage get ninSuccessPage => NinSuccessPageSw();
 
   @override
+  NinFailurePage get ninFailurePage => NinFailurePageSw();
+
+  @override
   Toc get toc => TocSw();
-
-  @override
-  String get beCareful => "Kuwa Makini!";
-
-  @override
-  String get done => "Tayari";
-
-  @override
-  String isRequired(String name) => "$name: Ni Lazima Ujaze";
-
-  @override
-  String get accountNumber => "Akaunti Namba";
-
-  @override
-  String get bank => "Benki";
-
-  @override
-  String get date => "Tarehe";
-
-  @override
-  String get unknownError => "Kuna tatizo limetokea";
-
-  @override
-  String get confirm => "Thibitisha";
-
-  @override
-  String get phone => "Namba Ya Simu";
-
-  @override
-  String get amount => "Kiasi";
-
-  @override
-  String get channel => "Channel";
-
-  @override
-  String get no => "Hapana";
 
   @override
   String get next => "Endelea";
 
   @override
-  String get from => "Kutoka";
+  String get done => "Tayari";
 
   @override
-  String get send => "Tuma";
+  String get comingSoon => "Inakuja Hivi Karibuni!";
 
   @override
-  String get validationError => "Tafadhari angalia taarifa zako vizuri";
+  String get bank => "Benki";
 
   @override
-  String get hi => "Habari";
+  String get show => "Onesha";
+
+  @override
+  String get confirm => "Thibitisha";
+
+  @override
+  String get cancel => "Ghairi";
 
   @override
   String get preview => "Angalia";
 
   @override
-  String get description => "Maelezo";
+  String get date => "Tarehe";
 
   @override
   String get okay => "Okay";
 
   @override
+  String get email => "Barua Pepe (Email)";
+
+  @override
+  String get unknownError => "Kuna tatizo limetokea";
+
+  @override
   String get remove => "Toa";
-
-  @override
-  String get to => "Kwenda";
-
-  @override
-  String get close => "Funga";
-
-  @override
-  String isInvalid(String name) =>
-      "Tafadhali angalia $name kwa umakini. Tunadhani si sahihi.";
 
   @override
   String get account => "Akaunti";
@@ -105,31 +74,65 @@ class AppLocalizationsSw extends AppLocalizations {
   String get seeAll => "Ona Yote";
 
   @override
-  String get tryAgain => "Jaribu Tena";
-
-  @override
-  String get comingSoon => "Inakuja Hivi Karibuni!";
-
-  @override
-  String get email => "Barua Pepe (Email)";
-
-  @override
-  String get home => "Nyumbani";
-
-  @override
-  String get show => "Onesha";
-
-  @override
-  String get refresh => "Onyesha upya";
-
-  @override
-  String get cancel => "Ghairi";
+  String get validationError => "Tafadhari angalia taarifa zako vizuri";
 
   @override
   String get yes => "Ndio";
 
   @override
   String get hide => "Ficha";
+
+  @override
+  String get send => "Tuma";
+
+  @override
+  String get description => "Maelezo";
+
+  @override
+  String get amount => "Kiasi";
+
+  @override
+  String get close => "Funga";
+
+  @override
+  String get accountNumber => "Akaunti Namba";
+
+  @override
+  String get no => "Hapana";
+
+  @override
+  String get tryAgain => "Jaribu Tena";
+
+  @override
+  String get refresh => "Onyesha upya";
+
+  @override
+  String get from => "Kutoka";
+
+  @override
+  String get to => "Kwenda";
+
+  @override
+  String isRequired(String name) => "$name: Ni Lazima Ujaze";
+
+  @override
+  String get home => "Nyumbani";
+
+  @override
+  String get beCareful => "Kuwa Makini!";
+
+  @override
+  String get phone => "Namba Ya Simu";
+
+  @override
+  String isInvalid(String name) =>
+      "Tafadhali angalia $name kwa umakini. Tunadhani si sahihi.";
+
+  @override
+  String get channel => "Channel";
+
+  @override
+  String get hi => "Habari";
 }
 
 class ProfileCheckSw extends ProfileCheck {
@@ -149,7 +152,7 @@ class NinStepsSw extends NinSteps {
 
   @override
   String get desc =>
-      "Ili kuendelea kutumia huduma hii unahitaji kuthibitisha utambulisho wako wa NIDA. Hii ni kuhakikisha usalama wa pesa zako.";
+      "Ili kuendelea kutumia huduma hii unahitaji kuthibitisha utambulisho wako wa NIDA. Hii ni kuhakikisha usalama wa pesa zako";
 
   @override
   String get steps =>
@@ -158,13 +161,16 @@ class NinStepsSw extends NinSteps {
 
 class NinInfoPageSw extends NinInfoPage {
   @override
-  String get nin => "Namba ya NIDA";
+  String get title => "Taarifa zako";
 
   @override
-  String get title => "Taarifa zako";
+  String get nin => "Namba ya NIDA";
 }
 
 class NinQuestionPageSw extends NinQuestionPage {
+  @override
+  String get answer => "Jibu";
+
   @override
   String get sendAnswerAction => "Tuma Jibu";
 
@@ -173,14 +179,17 @@ class NinQuestionPageSw extends NinQuestionPage {
 
   @override
   String get question => "Swali";
-
-  @override
-  String get answer => "Jibu";
 }
 
 class NinSuccessPageSw extends NinSuccessPage {
   @override
   String get successMsg => "Tumethibitisha namba yako ya NIDA";
+}
+
+class NinFailurePageSw extends NinFailurePage {
+  @override
+  String get msg =>
+      "We were unable to verify your identity. There are questions you have not answered correctly. Please try again later";
 }
 
 class TocSw extends Toc {

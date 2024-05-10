@@ -28,5 +28,9 @@
     {
         "_id": "nin_success_page",
         "success_msg": "We have successfully verified your NIN Number"
+    },
+    {
+        "_id": "nin_failure_page",
+        "msg": "Tumeshindwa kuthibitisha utambulisho wako. Kuna maswali hujayajibu kwa usahihi. Tafadhari jaribu tena baadae"
     }
 ]

@@ -48,79 +48,9 @@ abstract class AppLocalizations {
 
   NinSuccessPage get ninSuccessPage;
 
+  NinFailurePage get ninFailurePage;
+
   Toc get toc;
-
-  /// No description provided for @beCareful
-  ///
-  /// In en it is translated to:
-  /// **Be careful!**
-  String get beCareful;
-
-  /// No description provided for @done
-  ///
-  /// In en it is translated to:
-  /// **Done**
-  String get done;
-
-  /// Used in forms when a certain required field is not filled
-  ///
-  /// In en it is translated to:
-  /// **{name} is required**
-  String isRequired(String name);
-
-  /// No description provided for @accountNumber
-  ///
-  /// In en it is translated to:
-  /// **Account Number**
-  String get accountNumber;
-
-  /// No description provided for @bank
-  ///
-  /// In en it is translated to:
-  /// **Bank**
-  String get bank;
-
-  /// No description provided for @date
-  ///
-  /// In en it is translated to:
-  /// **Date**
-  String get date;
-
-  /// No description provided for @unknownError
-  ///
-  /// In en it is translated to:
-  /// **An unknown error happened**
-  String get unknownError;
-
-  /// No description provided for @confirm
-  ///
-  /// In en it is translated to:
-  /// **Confirm**
-  String get confirm;
-
-  /// No description provided for @phone
-  ///
-  /// In en it is translated to:
-  /// **Phone**
-  String get phone;
-
-  /// No description provided for @amount
-  ///
-  /// In en it is translated to:
-  /// **Amount**
-  String get amount;
-
-  /// No description provided for @channel
-  ///
-  /// In en it is translated to:
-  /// **Channel**
-  String get channel;
-
-  /// No description provided for @no
-  ///
-  /// In en it is translated to:
-  /// **No**
-  String get no;
 
   /// No description provided for @next
   ///
@@ -128,29 +58,41 @@ abstract class AppLocalizations {
   /// **Next**
   String get next;
 
-  /// No description provided for @from
+  /// No description provided for @done
   ///
   /// In en it is translated to:
-  /// **From**
-  String get from;
+  /// **Done**
+  String get done;
 
-  /// No description provided for @send
+  /// No description provided for @comingSoon
   ///
   /// In en it is translated to:
-  /// **Send**
-  String get send;
+  /// **Coming Soon!**
+  String get comingSoon;
 
-  /// No description provided for @validationError
+  /// No description provided for @bank
   ///
   /// In en it is translated to:
-  /// **Please check your information carefully**
-  String get validationError;
+  /// **Bank**
+  String get bank;
 
-  /// No description provided for @hi
+  /// No description provided for @show
   ///
   /// In en it is translated to:
-  /// **Hi**
-  String get hi;
+  /// **Show**
+  String get show;
+
+  /// No description provided for @confirm
+  ///
+  /// In en it is translated to:
+  /// **Confirm**
+  String get confirm;
+
+  /// No description provided for @cancel
+  ///
+  /// In en it is translated to:
+  /// **Cancel**
+  String get cancel;
 
   /// No description provided for @preview
   ///
@@ -158,11 +100,11 @@ abstract class AppLocalizations {
   /// **Preview**
   String get preview;
 
-  /// No description provided for @description
+  /// No description provided for @date
   ///
   /// In en it is translated to:
-  /// **Description**
-  String get description;
+  /// **Date**
+  String get date;
 
   /// No description provided for @okay
   ///
@@ -170,29 +112,23 @@ abstract class AppLocalizations {
   /// **Okay**
   String get okay;
 
+  /// No description provided for @email
+  ///
+  /// In en it is translated to:
+  /// **Email**
+  String get email;
+
+  /// No description provided for @unknownError
+  ///
+  /// In en it is translated to:
+  /// **An unknown error happened**
+  String get unknownError;
+
   /// No description provided for @remove
   ///
   /// In en it is translated to:
   /// **Remove**
   String get remove;
-
-  /// No description provided for @to
-  ///
-  /// In en it is translated to:
-  /// **To**
-  String get to;
-
-  /// No description provided for @close
-  ///
-  /// In en it is translated to:
-  /// **Close**
-  String get close;
-
-  /// Used in forms when a certain required field is invalid
-  ///
-  /// In en it is translated to:
-  /// **Please check {name} carefully. We think it is invalid.**
-  String isInvalid(String name);
 
   /// No description provided for @account
   ///
@@ -206,47 +142,11 @@ abstract class AppLocalizations {
   /// **See All**
   String get seeAll;
 
-  /// No description provided for @tryAgain
+  /// No description provided for @validationError
   ///
   /// In en it is translated to:
-  /// **Try Again**
-  String get tryAgain;
-
-  /// No description provided for @comingSoon
-  ///
-  /// In en it is translated to:
-  /// **Coming Soon!**
-  String get comingSoon;
-
-  /// No description provided for @email
-  ///
-  /// In en it is translated to:
-  /// **Email**
-  String get email;
-
-  /// No description provided for @home
-  ///
-  /// In en it is translated to:
-  /// **Home**
-  String get home;
-
-  /// No description provided for @show
-  ///
-  /// In en it is translated to:
-  /// **Show**
-  String get show;
-
-  /// No description provided for @refresh
-  ///
-  /// In en it is translated to:
-  /// **Refresh**
-  String get refresh;
-
-  /// No description provided for @cancel
-  ///
-  /// In en it is translated to:
-  /// **Cancel**
-  String get cancel;
+  /// **Please check your information carefully**
+  String get validationError;
 
   /// No description provided for @yes
   ///
@@ -259,6 +159,108 @@ abstract class AppLocalizations {
   /// In en it is translated to:
   /// **Hide**
   String get hide;
+
+  /// No description provided for @send
+  ///
+  /// In en it is translated to:
+  /// **Send**
+  String get send;
+
+  /// No description provided for @description
+  ///
+  /// In en it is translated to:
+  /// **Description**
+  String get description;
+
+  /// No description provided for @amount
+  ///
+  /// In en it is translated to:
+  /// **Amount**
+  String get amount;
+
+  /// No description provided for @close
+  ///
+  /// In en it is translated to:
+  /// **Close**
+  String get close;
+
+  /// No description provided for @accountNumber
+  ///
+  /// In en it is translated to:
+  /// **Account Number**
+  String get accountNumber;
+
+  /// No description provided for @no
+  ///
+  /// In en it is translated to:
+  /// **No**
+  String get no;
+
+  /// No description provided for @tryAgain
+  ///
+  /// In en it is translated to:
+  /// **Try Again**
+  String get tryAgain;
+
+  /// No description provided for @refresh
+  ///
+  /// In en it is translated to:
+  /// **Refresh**
+  String get refresh;
+
+  /// No description provided for @from
+  ///
+  /// In en it is translated to:
+  /// **From**
+  String get from;
+
+  /// No description provided for @to
+  ///
+  /// In en it is translated to:
+  /// **To**
+  String get to;
+
+  /// Used in forms when a certain required field is not filled
+  ///
+  /// In en it is translated to:
+  /// **{name} is required**
+  String isRequired(String name);
+
+  /// No description provided for @home
+  ///
+  /// In en it is translated to:
+  /// **Home**
+  String get home;
+
+  /// No description provided for @beCareful
+  ///
+  /// In en it is translated to:
+  /// **Be careful!**
+  String get beCareful;
+
+  /// No description provided for @phone
+  ///
+  /// In en it is translated to:
+  /// **Phone**
+  String get phone;
+
+  /// Used in forms when a certain required field is invalid
+  ///
+  /// In en it is translated to:
+  /// **Please check {name} carefully. We think it is invalid.**
+  String isInvalid(String name);
+
+  /// No description provided for @channel
+  ///
+  /// In en it is translated to:
+  /// **Channel**
+  String get channel;
+
+  /// No description provided for @hi
+  ///
+  /// In en it is translated to:
+  /// **Hi**
+  String get hi;
 }
 
 class _AppLocalizationsDelegate
@@ -331,20 +333,26 @@ abstract class NinSteps {
 }
 
 abstract class NinInfoPage {
-  /// No description provided for @nin
-  ///
-  /// In en it is translated to:
-  /// **NIN Number**
-  String get nin;
-
   /// No description provided for @title
   ///
   /// In en it is translated to:
   /// **Your details**
   String get title;
+
+  /// No description provided for @nin
+  ///
+  /// In en it is translated to:
+  /// **NIN Number**
+  String get nin;
 }
 
 abstract class NinQuestionPage {
+  /// No description provided for @answer
+  ///
+  /// In en it is translated to:
+  /// **Answer**
+  String get answer;
+
   /// No description provided for @sendAnswerAction
   ///
   /// In en it is translated to:
@@ -362,12 +370,6 @@ abstract class NinQuestionPage {
   /// In en it is translated to:
   /// **Question**
   String get question;
-
-  /// No description provided for @answer
-  ///
-  /// In en it is translated to:
-  /// **Answer**
-  String get answer;
 }
 
 abstract class NinSuccessPage {
@@ -376,6 +378,14 @@ abstract class NinSuccessPage {
   /// In en it is translated to:
   /// **We have successfully verified your NIN Number**
   String get successMsg;
+}
+
+abstract class NinFailurePage {
+  /// No description provided for @msg
+  ///
+  /// In en it is translated to:
+  /// **Tumeshindwa kuthibitisha utambulisho wako. Kuna maswali hujayajibu kwa usahihi. Tafadhari jaribu tena baadae**
+  String get msg;
 }
 
 abstract class Toc {

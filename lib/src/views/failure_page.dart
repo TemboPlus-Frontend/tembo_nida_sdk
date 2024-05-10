@@ -22,7 +22,7 @@ class FailurePage extends TemboPage {
                 height: 150),
             vSpace(),
             TemboText.center(
-              "Tumeshindwa kuthibitisha utambulisho wako. Kuna maswali hujayajibu kwa usahihi. Tafadhari jaribu tena baadae.",
+              context.l.ninFailurePage.msg,
               style: context.textTheme.bodyLarge,
             ),
             vSpace(),
