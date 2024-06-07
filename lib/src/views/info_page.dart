@@ -100,13 +100,13 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                   ),
                 ),
               ),
-              vSpace(),
+             /*  vSpace(),
               TemboTextField.labelled(
                 context.l.email,
                 controller: state.emailContr,
                 textInputType: TextInputType.emailAddress,
                 validator: validateEmail,
-              )
+              ) */
             ],
           ),
         ),
@@ -179,7 +179,7 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
       "cardIssueDate": date,
       "cardExpiryDate": date,
       "nin": ninContr.compactText!,
-      "email": emailContr.compactText!,
+      // "email": emailContr.compactText!,
     };
 
     final futureTracker = ref.read(futureTrackerProvider);
