@@ -109,7 +109,7 @@ class _TOCPageState extends State<TOCPage> {
   }
 
   void next() {
-    temboNIDASDKRootNavKey.push2(const PrepPage());
+    temboNIDASDKRootNavKey.push(const PrepPage(), routeName: PrepPage.name);
   }
 }
 

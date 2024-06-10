@@ -4,14 +4,13 @@ import 'package:tembo_nida_sdk/src/views/root_app.dart';
 
 import '../../source.dart';
 
-class QRCodeScannerPage extends TemboConsumerPage {
+class QRCodeScannerPage extends ConsumerStatefulWidget {
   const QRCodeScannerPage({super.key});
 
   @override
-  ConsumerState<TemboConsumerPage> createState() => _QRCodeScannerPageState();
+  ConsumerState<QRCodeScannerPage> createState() => _QRCodeScannerPageState();
 
-  @override
-  String get name => "scanner";
+  static const name = "scanner";
 }
 
 class _QRCodeScannerPageState extends ConsumerState<QRCodeScannerPage> {

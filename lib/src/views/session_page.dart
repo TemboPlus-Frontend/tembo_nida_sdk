@@ -56,7 +56,7 @@ class _SessionPageState extends TemboConsumerState<SessionPage> {
         orElse: () {},
         success: (_) {
           temboNIDASDKRootNavKey.pop();
-          temboNIDASDKRootNavKey.push3(const QuestionsPage());
+          temboNIDASDKRootNavKey.push(const QuestionsPage(), routeName: QuestionsPage.name);
         },
       );
     });

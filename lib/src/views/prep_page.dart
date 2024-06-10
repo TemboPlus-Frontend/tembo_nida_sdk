@@ -3,11 +3,10 @@ import 'package:tembo_nida_sdk/src/views/root_app.dart';
 
 import '../../source.dart';
 
-class PrepPage extends TemboStatefulPage {
+class PrepPage extends StatefulWidget {
   const PrepPage({super.key});
 
-  @override
-  String get name => "prep-page";
+  static const name = "prep-page";
 
   @override
   State<PrepPage> createState() => _PrepPageState();
@@ -75,6 +74,6 @@ class _PrepPageState extends State<PrepPage> {
   }
 
   onPressed() {
-    temboNIDASDKRootNavKey.push3(const BasicInfoPage());
+    temboNIDASDKRootNavKey.push(const BasicInfoPage(), routeName: BasicInfoPage.name);
   }
 }

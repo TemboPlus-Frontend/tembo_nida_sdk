@@ -15,11 +15,10 @@ typedef _State = ({NIDAUser? user, Question? newQn});
 
 final _pageStateNotifier = createModelStateNotifier<_State>();
 
-final class QuestionsPage extends TemboConsumerPage {
+final class QuestionsPage extends ConsumerStatefulWidget {
   const QuestionsPage({super.key});
 
-  @override
-  String get name => "questions-page";
+  static const name = "questions-page";
 
   @override
   ConsumerState<QuestionsPage> createState() => _QuestionsPageState();

@@ -15,11 +15,10 @@ import 'session_page.dart';
 final _profileStateNotifier = createModelStateNotifier<Profile>();
 final _firstTimeProfileStateNotifier = createModelStateNotifier<Profile>();
 
-class BasicInfoPage extends TemboConsumerPage {
+class BasicInfoPage extends ConsumerStatefulWidget {
   const BasicInfoPage({super.key});
 
-  @override
-  String get name => "nin";
+  static const name = "nin";
 
   @override
   ConsumerState<BasicInfoPage> createState() => _NIDANumberPageState();
@@ -100,7 +99,7 @@ class _NIDANumberPageStateView extends ConsumerWidget {
                   ),
                 ),
               ),
-             /*  vSpace(),
+              /*  vSpace(),
               TemboTextField.labelled(
                 context.l.email,
                 controller: state.emailContr,
@@ -160,8 +159,10 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
   }
 
   void scanNidaNumber() async {
-    final code =
-        await temboNIDASDKRootNavKey.push3<Barcode?>(const QRCodeScannerPage());
+    final code = await temboNIDASDKRootNavKey.push<Barcode?>(
+      const QRCodeScannerPage(),
+      routeName: QRCodeScannerPage.name,
+    );
     if (code == null) return;
     if (code.type == BarcodeType.text) {
       ninContr.text = code.displayValue ?? "";
@@ -189,7 +190,10 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
       onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
       onSuccess: (e) {
         ref.read(profileProvider.notifier).state = e;
-        temboNIDASDKRootNavKey.to(SessionPage.routeName, const SessionPage());
+        temboNIDASDKRootNavKey.push(
+          const SessionPage(),
+          routeName: SessionPage.routeName,
+        );
       },
     );
   }
