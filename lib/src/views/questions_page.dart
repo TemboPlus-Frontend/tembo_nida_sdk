@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tembo_nida_sdk/mixpanel.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
 import 'package:tembo_nida_sdk/src/logic/verify/manager.dart';
 import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
@@ -16,7 +17,8 @@ typedef _State = ({NIDAUser? user, Question? newQn});
 final _pageStateNotifier = createModelStateNotifier<_State>();
 
 final class QuestionsPage extends ConsumerStatefulWidget {
-  const QuestionsPage({super.key});
+  final Profile profile;
+  const QuestionsPage(this.profile, {super.key});
 
   static const name = "questions-page";
 
@@ -185,11 +187,17 @@ class _QuestionsPageState extends TemboConsumerState<QuestionsPage> {
         answerController.clear();
 
         if (data.user == null && data.newQn == null) {
+          SDKMixPanelManager.instance
+              .trackNIDAVERFailure(widget.profile)
+              .catchError((_) {});
           temboNIDASDKRootNavKey.push(const FailurePage());
           return;
         }
 
         if (data.user != null) {
+          SDKMixPanelManager.instance
+              .trackNIDAVERSuccess(widget.profile)
+              .catchError((_) {});
           temboNIDASDKRootNavKey.pop();
           temboNIDASDKRootNavKey.push(SuccessPage(data.user!));
         }

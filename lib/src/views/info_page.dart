@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tembo_nida_sdk/src/logic/models/profile.dart';
 import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
 import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
@@ -180,7 +179,6 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
       "cardIssueDate": date,
       "cardExpiryDate": date,
       "nin": ninContr.compactText!,
-      // "email": emailContr.compactText!,
     };
 
     final futureTracker = ref.read(futureTrackerProvider);
@@ -188,10 +186,10 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
       notifier: ref.read(_profileStateNotifier.notifier),
       future: ref.read(profileRepoProvider).updateProfile(data),
       onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
-      onSuccess: (e) {
-        ref.read(profileProvider.notifier).state = e;
+      onSuccess: (profile) {
+        ref.read(profileProvider.notifier).state = profile;
         temboNIDASDKRootNavKey.push(
-          const SessionPage(),
+          SessionPage(profile),
           routeName: SessionPage.routeName,
         );
       },

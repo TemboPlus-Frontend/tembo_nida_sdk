@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../source.dart';
-import '../models/profile.dart';
 import 'api.dart';
 
 final profileProvider = StateProvider<Profile?>((ref) => null);

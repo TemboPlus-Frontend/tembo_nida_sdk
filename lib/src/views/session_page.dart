@@ -11,7 +11,8 @@ import '../../source.dart';
 final _pageStateNotifier = createModelStateNotifier<String>();
 
 class SessionPage extends ConsumerStatefulWidget {
-  const SessionPage({super.key});
+  final Profile profile;
+  const SessionPage(this.profile, {super.key});
 
   static const routeName = '/session';
 
@@ -56,7 +57,10 @@ class _SessionPageState extends TemboConsumerState<SessionPage> {
         orElse: () {},
         success: (_) {
           temboNIDASDKRootNavKey.pop();
-          temboNIDASDKRootNavKey.push(const QuestionsPage(), routeName: QuestionsPage.name);
+          temboNIDASDKRootNavKey.push(
+            QuestionsPage(widget.profile),
+            routeName: QuestionsPage.name,
+          );
         },
       );
     });
