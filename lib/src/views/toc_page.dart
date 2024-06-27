@@ -72,8 +72,7 @@ class _TOCPageState extends State<TOCPage> {
                       onChanged: updateAgreeStatus,
                       checkColor: context.colorScheme.onPrimary,
                       fillColor: agreedToTOC
-                          ? MaterialStatePropertyAll(
-                              context.colorScheme.primary)
+                          ? WidgetStatePropertyAll(context.colorScheme.primary)
                           : null,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
@@ -90,8 +89,9 @@ class _TOCPageState extends State<TOCPage> {
               ),
             ],
           )),
-      bottomNavigationBar:
-          agreedToTOC ? TemboBottomButton(callback: next) : const _Button(),
+      bottomNavigationBar: TemboBottomButton(
+        callback: agreedToTOC ? next : () {},
+      ),
     );
   }
 
