@@ -1,33 +1,26 @@
-import 'dart:convert';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../source.dart';
-import 'api.dart';
 
 final profileProvider = StateProvider<Profile?>((ref) => null);
 
-final profileRepoProvider = Provider((ref) => ProfileRepository(ref));
+final profileRepoProvider = Provider((ref) => _ProfileRepository(ref));
 
-class ProfileRepository {
+class _ProfileRepository {
   final ProviderRef ref;
-  ProfileRepository(this.ref);
+  _ProfileRepository(this.ref);
 
-  final _api = ProfileAPI();
+  final _repo = ProfileRepository();
 
   Future<Profile> getProfile() async {
-    final result = await _api.getProfile();
-    final profile = Profile.fromMap(result);
+    final profile = await _repo.getUserProfile();
 
     ref.read(profileProvider.notifier).state = profile;
     return profile;
   }
 
   Future<Profile> updateProfile(MapSD data) async {
-    final body = jsonEncode(data);
-    final result = await _api.editProfile(body);
-    final profile = Profile.fromMap(result);
-
+    final profile = await _repo.updateProfile(data);
     ref.read(profileProvider.notifier).state = profile;
     return profile;
   }
