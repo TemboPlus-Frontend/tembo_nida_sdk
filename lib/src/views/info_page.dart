@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
-import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 
 import '../../source.dart';
@@ -144,11 +142,9 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
     final futureTracker = ref.read(futureTrackerProvider);
     futureTracker.trackWithNotifier(
       notifier: ref.read(_firstTimeProfileStateNotifier.notifier),
-      future: ref.read(profileRepoProvider).getProfile(),
-      onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
+      future: ProfileManager.instance.fetch(),
+      onError: (e) => showSnackbar(e.message.text),
       onSuccess: (e) {
-        ref.read(profileProvider.notifier).state = e;
-
         setState(() {
           emailContr.text = e.email ?? "";
           ninContr.text = e.nin ?? "";
@@ -184,10 +180,9 @@ class _NIDANumberPageState extends TemboConsumerState<BasicInfoPage> {
     final futureTracker = ref.read(futureTrackerProvider);
     futureTracker.trackWithNotifier(
       notifier: ref.read(_profileStateNotifier.notifier),
-      future: ref.read(profileRepoProvider).updateProfile(data),
-      onError: (e) => showSnackbar(e.message.fromLocale(localeManager.value)),
+      future: ProfileManager.instance.update(data),
+      onError: (e) => showSnackbar(e.message.text),
       onSuccess: (profile) {
-        ref.read(profileProvider.notifier).state = profile;
         temboNIDASDKRootNavKey.push(
           SessionPage(profile),
           routeName: SessionPage.routeName,

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tembo_nida_sdk/src/logic/profile/repository.dart';
 import 'package:tembo_nida_sdk/src/logic/session/repo.dart';
 import 'package:tembo_nida_sdk/src/views/questions_page.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
@@ -22,7 +21,7 @@ class SessionPage extends ConsumerStatefulWidget {
 
 class _SessionPageState extends TemboConsumerState<SessionPage> {
   Future<String> initiateSession() async {
-    final profile = ref.read(profileProvider);
+    final profile = ProfileManager.instance.getCurrent();
     if (profile == null) {
       throw context.l.profileCheck.error;
     }
@@ -31,7 +30,7 @@ class _SessionPageState extends TemboConsumerState<SessionPage> {
     if (id.isNotEmpty) return id;
 
     await ref.read(sessionRepoProvider).initiateSession();
-    final newProfile = await ref.read(profileRepoProvider).getProfile();
+    final newProfile = await ProfileManager.instance.fetch();
     return newProfile.onboardId!;
   }
 

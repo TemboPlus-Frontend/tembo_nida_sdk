@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tembo_nida_sdk/mixpanel.dart';
 import 'package:tembo_nida_sdk/src/logic/models/question.dart';
 import 'package:tembo_nida_sdk/src/logic/verify/manager.dart';
-import 'package:tembo_nida_sdk/src/view_models/locale_manager.dart';
 import 'package:tembo_nida_sdk/src/views/root_app.dart';
 import 'package:tembo_nida_sdk/src/views/success_page.dart';
 
@@ -83,7 +82,7 @@ class _QuestionsPageStateView extends ConsumerWidget {
   }
 
   Widget buildQuestion(Question qn) {
-    final locale = localeManager.value;
+    final locale = getCurrentLocale();
 
     return Builder(builder: (context) {
       return Scaffold(

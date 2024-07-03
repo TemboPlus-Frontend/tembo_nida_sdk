@@ -3,9 +3,7 @@ import 'package:tembo_nida_sdk/source.dart';
 import 'package:tembo_nida_sdk/src/logic/models/user.dart';
 
 import '../../localizations/app_localizations.dart';
-import '../view_models/locale_manager.dart';
 import '../view_models/navigator_manager.dart';
-import '../view_models/theme_manager.dart';
 
 final temboNIDASDKRootNavKey = GlobalKey<NavigatorState>();
 final temboNIDASDKMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -20,28 +18,17 @@ Future<T?> pushApp<T>(BuildContext context, String name, Widget page) async {
     MaterialPageRoute(
       settings: RouteSettings(name: name),
       builder: (context) {
-        return ValueListenableBuilder(
-          valueListenable: localeManager,
-          builder: (context, temboLocale, _) {
-            return ValueListenableBuilder(
-              valueListenable: themeManager,
-              builder: (context, theme, _) {
-                return ProviderScope(
-                  child: MaterialApp(
-                    home: page,
-                    navigatorKey: temboNIDASDKRootNavKey,
-                    locale: temboLocale.locale,
-                    debugShowCheckedModeBanner: false,
-                    theme: getTheme(),
-                    scaffoldMessengerKey: temboNIDASDKMessengerKey,
-                    localizationsDelegates:
-                        AppLocalizations.localizationsDelegates,
-                    supportedLocales: AppLocalizations.supportedLocales,
-                  ),
-                );
-              },
-            );
-          },
+        return ProviderScope(
+          child: MaterialApp(
+            home: page,
+            navigatorKey: temboNIDASDKRootNavKey,
+            locale: getCurrentLocale().locale,
+            debugShowCheckedModeBanner: false,
+            theme: getTheme(),
+            scaffoldMessengerKey: temboNIDASDKMessengerKey,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+          ),
         );
       },
     ),
