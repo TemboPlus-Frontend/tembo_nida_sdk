@@ -14,19 +14,31 @@ class TemboBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: context.colorScheme.primary,
+   return Container(
+      color: Colors.white,
       child: SafeArea(
+          child: Padding(
+        padding: horizontal(20) + bottom(60),
         child: TemboTextButton(
           onPressed: callback,
-          style: const TemboButtonStyle.filled(borderRadius: 0),
-          child: loading
-              ? TemboLoadingIndicator(
-                  color: context.colorScheme.onPrimary,
-                )
-              : TemboText(text ?? context.l.next),
+          style: TemboButtonStyle.filled(
+            padding: horizontal() + vertical(),
+            borderRadius: 40,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TemboText.headlineSmall(
+                context,
+                text ?? "Next",
+                color: getTemboColorScheme().onPrimary,
+                weight: FontWeight.bold,
+              ),
+            ],
+          ),
         ),
-      ),
+      )),
     );
   }
 }
+

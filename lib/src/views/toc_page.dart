@@ -28,69 +28,63 @@ class _TOCPageState extends State<TOCPage> {
       ),
       extendBodyBehindAppBar: true,
       body: Container(
-          constraints: const BoxConstraints.expand(),
-          child: Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: kHorPadding,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 20),
-                      Image.asset(
-                        "packages/tembo_core/assets/logo_round.png",
-                        height: 150,
-                      ),
-                      const SizedBox(height: 20),
-                      const TemboText("TEMBO PLUS INC."),
-                      const SizedBox(height: 10),
-                      TemboText(
-                        context.l.toc.desc,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TemboTextButton(
-                        onPressed: showTOC,
-                        style: const TemboButtonStyle.outline(),
-                        child: TemboText(context.l.toc.readTermsActions),
-                      ),
-                    ],
+        constraints: const BoxConstraints.expand(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: kHorPadding + bottom(30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20),
+                  Image.asset(
+                    "packages/tembo_core/assets/logo_round.png",
+                    height: 150,
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: kHorPadding.right),
-                child: Row(
-                  children: [
-                    Checkbox.adaptive(
-                      value: agreedToTOC,
-                      onChanged: updateAgreeStatus,
-                      checkColor: context.colorScheme.onPrimary,
-                      fillColor: agreedToTOC
-                          ? WidgetStatePropertyAll(context.colorScheme.primary)
-                          : null,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                  const SizedBox(height: 20),
+                  const TemboText("TEMBO PLUS INC."),
+                  const SizedBox(height: 10),
+                  TemboText(
+                    context.l.toc.desc,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: TemboText(
-                        context.l.toc.readTermsConfirm,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    )
+                  ),
+                  const SizedBox(height: 10),
+                  TemboTextButton(
+                    onPressed: showTOC,
+                    style: const TemboButtonStyle.outline(),
+                    child: TemboText(context.l.toc.readTermsActions),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: horizontal(),
+              child: TemboTextButton(
+                onPressed: next,
+                style: TemboButtonStyle.filled(
+                  padding: horizontal() + vertical(),
+                  borderRadius: 40,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TemboText.headlineSmall(
+                      context,
+                      "I Agree",
+                      color: getTemboColorScheme().onPrimary,
+                      weight: FontWeight.bold,
+                    ),
                   ],
                 ),
               ),
-            ],
-          )),
-      bottomNavigationBar: TemboBottomButton(
-        callback: agreedToTOC ? next : () {},
+            )
+          ],
+        ),
       ),
     );
   }
@@ -110,19 +104,5 @@ class _TOCPageState extends State<TOCPage> {
 
   void next() {
     temboNIDASDKRootNavKey.push(const PrepPage(), routeName: PrepPage.name);
-  }
-}
-
-class _Button extends StatelessWidget {
-  const _Button();
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: TemboTextButton(
-        onPressed: () {},
-        child: TemboText(context.l.next),
-      ),
-    );
   }
 }
